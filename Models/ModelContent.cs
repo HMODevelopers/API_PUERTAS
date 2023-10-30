@@ -14,7 +14,9 @@ namespace Models
 
         public virtual DbSet<PLU_Menu> PLU_Menu { get; set; }
         public virtual DbSet<PLU_MenuRoles> PLU_MenuRoles { get; set; }
+        public virtual DbSet<PLU_Puertas> PLU_Puertas { get; set; }
         public virtual DbSet<PLU_Rol> PLU_Rol { get; set; }
+        public virtual DbSet<PLU_Seccion> PLU_Seccion { get; set; }
         public virtual DbSet<PLU_SubMenu> PLU_SubMenu { get; set; }
         public virtual DbSet<PLU_Usuario> PLU_Usuario { get; set; }
 
@@ -38,6 +40,14 @@ namespace Models
                 .WithRequired(e => e.PLU_Menu)
                 .WillCascadeOnDelete(false);
 
+            modelBuilder.Entity<PLU_Puertas>()
+                .Property(e => e.NombrePuerta)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<PLU_Puertas>()
+                .Property(e => e.Code)
+                .IsUnicode(false);
+
             modelBuilder.Entity<PLU_Rol>()
                 .Property(e => e.NombreRol)
                 .IsUnicode(false);
@@ -54,6 +64,15 @@ namespace Models
             modelBuilder.Entity<PLU_Rol>()
                 .HasMany(e => e.PLU_Usuario)
                 .WithRequired(e => e.PLU_Rol)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PLU_Seccion>()
+                .Property(e => e.NombreSeccion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<PLU_Seccion>()
+                .HasMany(e => e.PLU_Puertas)
+                .WithRequired(e => e.PLU_Seccion)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PLU_SubMenu>()

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Helpers
 {
-    public class UsuariosHelper
+    public class UsuarioHelper
     {
 
         public ResponseModel Acceder(string user, string pass)

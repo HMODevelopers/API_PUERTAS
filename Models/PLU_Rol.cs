@@ -25,7 +25,7 @@ namespace Models
         [StringLength(255)]
         public string Descripcion { get; set; }
 
-        public bool? Activo { get; set; }
+        public bool Activo { get; set; }
 
         public DateTime? FechaCreacion { get; set; }
 

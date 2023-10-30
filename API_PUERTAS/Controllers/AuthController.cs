@@ -10,7 +10,7 @@ namespace API_PUERTAS.Controllers
 {
     public class AuthController : Controller
     {
-        UsuariosHelper Usuario = new UsuariosHelper();
+        SeccionHelpers Usuario = new SeccionHelpers();
 
         // GET: Auth
         [NoLogin]

@@ -511,19 +511,18 @@
     <Content Include="Views\Menu\MenuPerfil.cshtml" />
     <Content Include="Views\SubMenu\_agregarSubMenu.cshtml" />
     <Content Include="Views\SubMenu\Index.cshtml" />
-    <Content Include="Views\Catalogos\Usuarios.cshtml" />
     <Content Include="Views\Catalogos\Roles.cshtml" />
-    <Content Include="Views\Catalogos\Seccion.cshtml" />
-    <Content Include="Views\Catalogos\Puertas.cshtml" />
-    <Content Include="Views\Catalogos\RolesUsuarios.cshtml" />
     <Content Include="Views\Usuarios\_agregarUsuario.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
+    <Content Include="Views\Puertas\Index.cshtml" />
+    <Content Include="Views\Seccion\Index.cshtml" />
+    <Content Include="Views\Puertas\_AgregarPuerta.cshtml" />
+    <Content Include="Views\Seccion\_AgregarSeccion.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Proyecto\" />
-    <Folder Include="Views\Puertas\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Scripts\bootstrap.min.js.map" />
@@ -602,7 +601,7 @@
       <Name>Helpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{5d870860-f770-4a83-8c3d-4513b1650c73}</Project>
+      <Project>{89b56c81-e8f6-4bae-a354-4b16cdeb6caa}</Project>
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
@@ -625,6 +624,8 @@
           <DevelopmentServerPort>54570</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>https://localhost:44317/</IISUrl>
+          <OverrideIISAppRootUrl>True</OverrideIISAppRootUrl>
+          <IISAppRootUrl>https://localhost:44317/</IISAppRootUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
