@@ -19,9 +19,21 @@ namespace API_PUERTAS
             bundles.Add(new Bundle("~/bundles/bootstrap").Include(
                       "~/Scripts/bootstrap.js"));
 
+
+            //CSS Template Xeriav
             bundles.Add(new StyleBundle("~/Content/css").Include(
-                      "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/assets/css/bootstrap.min.css",
+                      "~/Content/assets/css/icons.min.css",
+                      "~/Content/assets/css/app.min.css"));
+
+
+            //JS Template Xeriav
+
+            bundles.Add(new ScriptBundle("~/bundles/Javascript").Include(
+                            "~/Content/assets/js/vendor.min.js",
+                            "~/Content/assets/js/app.min.js"));
+
         }
+
     }
 }
