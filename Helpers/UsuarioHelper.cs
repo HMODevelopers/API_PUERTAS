@@ -46,8 +46,6 @@ namespace Helpers
             return rm;
         }
 
-    
-
         public PLU_Usuario Obtener(int id)
         {
 

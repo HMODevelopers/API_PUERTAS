@@ -36,7 +36,7 @@ namespace API_PUERTAS.Controllers
         {
 
             var rm = new ResponseModel();
-            SeccionHelpers user = new SeccionHelpers();
+            UsuarioHelper user = new UsuarioHelper();
             plu_usuario.Pass = HashHelper.SHA1("123456789$");
             plu_usuario.FechaCreacion = DateTime.Now;
 
@@ -66,7 +66,7 @@ namespace API_PUERTAS.Controllers
         {
 
             var rm = new ResponseModel();
-            SeccionHelpers user = new SeccionHelpers();
+            UsuarioHelper user = new UsuarioHelper();
             PLU_Usuario usuario = new PLU_Usuario();
             var data = db.PLU_Usuario.Where(x => x.IdUsuario == id).FirstOrDefault();
             usuario.IdUsuario = data.IdUsuario;

@@ -31,6 +31,7 @@
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>
+@Html.Partial("_AgregarSeccion")
 
 @section Scripts{
 
@@ -66,9 +67,9 @@
                        "data": "Activo",
                        "render": function (value) {
                            if (value) {
-                               return "<center><h4><i class='text-success icon-user-following'></i></h4></center>";
+                               return "<center><h4><i class='text-success icon-like'></i></h4></center>";
                            } else {
-                               return "<center><h4><i class='text-danger icon-user-unfollow'></i></h4></center>";
+                               return "<center><h4><i class='text-danger icon-dislike'></i></h4></center>";
                            }
 
                        }
@@ -106,7 +107,7 @@
                      $(".dataTables_paginate > .pagination").addClass("pagination-rounded")}
            });
 
-            cambiar_status("#DataUsuarios tbody", table);
+            cambiar_status("#DataSecciones tbody", table);
         }
 
         var cambiar_status = function (tbody, table) {
@@ -115,7 +116,7 @@
             $(tbody).on("click", "button.cambiostatus", function () {
 
                 data = table.row($(this).parents("tr")).data();
-                var id = data.IdUsuario;
+                var id = data.IdSeccion;
                 var activo = data.Activo;
 
 
@@ -136,7 +137,7 @@
                 if (t.value) {
 
                      $.ajax({
-                        url: '@Url.Action("CambiarStatus", "Usuarios")',
+                        url: '@Url.Action("CambiarStatus", "Seccion")',
                         type: 'POST',
                         data: { id: id, activo: activo },
                         success: function (data) {
