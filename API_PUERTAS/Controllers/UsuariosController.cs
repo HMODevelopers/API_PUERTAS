@@ -66,7 +66,7 @@ namespace API_PUERTAS.Controllers
         {
 
             var rm = new ResponseModel();
-            UsuarioHelper user = new UsuarioHelper();
+            UsuarioHelper   user = new UsuarioHelper();
             PLU_Usuario usuario = new PLU_Usuario();
             var data = db.PLU_Usuario.Where(x => x.IdUsuario == id).FirstOrDefault();
             usuario.IdUsuario = data.IdUsuario;

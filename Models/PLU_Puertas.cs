@@ -5,6 +5,7 @@ namespace Models
     using System.ComponentModel.DataAnnotations;
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
+    using System.Web.Mvc;
 
     public partial class PLU_Puertas
     {
@@ -26,5 +27,9 @@ namespace Models
         public DateTime FechaCreacion { get; set; }
 
         public virtual PLU_Seccion PLU_Seccion { get; set; }
+
+       
+
+
     }
 }

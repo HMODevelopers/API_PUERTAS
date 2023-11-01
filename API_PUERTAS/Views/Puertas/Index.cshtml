@@ -21,6 +21,7 @@
                             <th>#</th>
                             <th>Nombre Seccion</th>
                             <th>Nombre Puerta</th>
+                            <th>Codigo</th>
                             <th>Activo</th>
                             <th>Fecha Creación</th>
                             <th>Acciones</th>
@@ -33,13 +34,37 @@
     </div><!-- end col-->
 </div>
 
+@Html.Partial("_AgregarPuerta")
+
 @section Scripts{
 
     <script>
         $(document).ready(function () {
 
             CargarData();
+            getSecciones();
+           
         });
+
+        function getSecciones() {
+
+            $.ajax({
+                url: '@Url.Action("GetSecciones", "Puertas")', 
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $.each(data, function (index, item) {
+                        $('#IdSeccion').append($('<option>', {
+                            value: item.Value,
+                            text: item.Text
+                        }));
+                    });
+                },
+                error: function (error) {
+                    console.error('Error fetching data: ' + error);
+                }
+            });
+        }
 
 
         function CargarData() {
@@ -64,13 +89,14 @@
                    { "data": "IdPuerta" },
                    { "data": "NombreSeccion" },
                    { "data": "NombrePuerta" },
+                   { "data": "Code" },
                    {
                        "data": "Activo",
                        "render": function (value) {
                            if (value) {
-                               return "<center><h4><i class='text-success icon-user-following'></i></h4></center>";
+                               return "<center><h4><i class='text-success icon-like'></i></h4></center>";
                            } else {
-                               return "<center><h4><i class='text-danger icon-user-unfollow'></i></h4></center>";
+                               return "<center><h4><i class='text-danger icon-dislike'></i></h4></center>";
                            }
 
                        }
@@ -117,13 +143,13 @@
             $(tbody).on("click", "button.cambiostatus", function () {
 
                 data = table.row($(this).parents("tr")).data();
-                var id = data.IdUsuario;
+                var id = data.IdPuerta;
                 var activo = data.Activo;
 
 
                 Swal.fire({
                     title: "Estas seguro?",
-                    text: "¡Cambiaras el estatus del usuario: " + data.Usuario + "!",
+                    text: "¡Cambiaras el estatus de la puerta: " + data.NombrePuerta + "!",
                     type:  "warning",
                     showCancelButton: !0,
                     confirmButtonText: "Aceptar",
@@ -138,7 +164,7 @@
                 if (t.value) {
 
                      $.ajax({
-                        url: '@Url.Action("CambiarStatus", "Usuarios")',
+                        url: '@Url.Action("CambiarStatus", "Puertas")',
                         type: 'POST',
                         data: { id: id, activo: activo },
                         success: function (data) {
@@ -185,7 +211,7 @@
 
                      Swal.fire({
                           title: "Cancelado",
-                          text: "Tu usuario está seguro",
+                          text: "Tu puerta está segura",
                           type: "error"
                      });
                 }
