@@ -198,7 +198,6 @@
     <Content Include="Content\assets\images\attached-files\img-1.jpg" />
     <Content Include="Content\assets\images\attached-files\img-2.jpg" />
     <Content Include="Content\assets\images\attached-files\img-3.jpg" />
-    <Content Include="Content\assets\images\auth-logo.png" />
     <Content Include="Content\assets\images\bg-pattern-2.png" />
     <Content Include="Content\assets\images\bg-pattern.png" />
     <Content Include="Content\assets\images\cards\amazon.png" />
@@ -225,6 +224,7 @@
     <Content Include="Content\assets\images\plugins\jstree.png" />
     <Content Include="Content\assets\images\plugins\loading.gif" />
     <Content Include="Content\assets\images\plugins\multiple-arrow.png" />
+    <Content Include="Content\assets\images\radio_01.png" />
     <Content Include="Content\assets\images\small\img-1.jpg" />
     <Content Include="Content\assets\images\small\img-2.jpg" />
     <Content Include="Content\assets\images\small\img-3.jpg" />

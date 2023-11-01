@@ -62,16 +62,16 @@ namespace API_PUERTAS.Controllers
             return Json(rm);
         }
 
+
         [HttpPost]
         public JsonResult CambiarStatus(int id, bool activo)
         {
 
             var rm = new ResponseModel();
             SeccionHelper seccion = new SeccionHelper();
+            
             PLU_Seccion sec = new PLU_Seccion();
-
             var data = db.PLU_Seccion.Where(x => x.IdSeccion == id).FirstOrDefault();
-
             sec.IdSeccion = data.IdSeccion;
             sec.NombreSeccion = data.NombreSeccion;
             sec.FechaCreacion = data.FechaCreacion;
@@ -89,7 +89,7 @@ namespace API_PUERTAS.Controllers
 
             if (rm.response)
             {
-                rm.message = "Se a desactivad la seccion con exito.";
+                rm.message = "Su estado de seccion ha sido cambiado.";
                 rm.error = false;
             }
             else
@@ -100,6 +100,5 @@ namespace API_PUERTAS.Controllers
 
             return Json(rm);
         }
-
     }
 }

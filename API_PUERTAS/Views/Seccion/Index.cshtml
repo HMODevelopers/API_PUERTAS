@@ -31,7 +31,6 @@
         </div> <!-- end card -->
     </div><!-- end col-->
 </div>
-
 @Html.Partial("_AgregarSeccion")
 
 @section Scripts{
@@ -123,7 +122,7 @@
 
                 Swal.fire({
                     title: "Estas seguro?",
-                    text: "¡Cambiaras el estatus de la seccion: " + data.NombreSeccion + "!",
+                    text: "¡Cambiaras el estatus del usuario: " + data.Usuario + "!",
                     type:  "warning",
                     showCancelButton: !0,
                     confirmButtonText: "Aceptar",
@@ -185,7 +184,7 @@
 
                      Swal.fire({
                           title: "Cancelado",
-                          text: "Tu seccion está segura",
+                          text: "Tu usuario está seguro",
                           type: "error"
                      });
                 }
