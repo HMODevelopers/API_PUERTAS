@@ -38,5 +38,33 @@ namespace Helpers
 
             return rm;
         }
+
+        public ResponseModel CambiarStatus(PLU_Seccion plu_seccion)
+        {
+            var rm = new ResponseModel();
+            try
+            {
+                using (var ctx = new ModelContent())
+                {
+
+                    ctx.Entry(plu_seccion).State = EntityState.Modified;
+                    ctx.SaveChanges();
+                    rm.SetResponse(true);
+
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                throw e;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return rm;
+        }
+
     }
 }
