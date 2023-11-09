@@ -166,6 +166,8 @@
     <Compile Include="Controllers\CatalogosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\ResidentesController.cs" />
+    <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SeccionController.cs" />
     <Compile Include="Controllers\PuertasController.cs" />
     <Compile Include="Controllers\SubMenuController.cs" />
@@ -512,13 +514,16 @@
     <Content Include="Views\Menu\MenuPerfil.cshtml" />
     <Content Include="Views\SubMenu\_agregarSubMenu.cshtml" />
     <Content Include="Views\SubMenu\Index.cshtml" />
-    <Content Include="Views\Catalogos\Roles.cshtml" />
     <Content Include="Views\Usuarios\_agregarUsuario.cshtml" />
     <Content Include="Views\Usuarios\Index.cshtml" />
     <Content Include="Views\Puertas\Index.cshtml" />
     <Content Include="Views\Seccion\Index.cshtml" />
     <Content Include="Views\Puertas\_AgregarPuerta.cshtml" />
     <Content Include="Views\Seccion\_AgregarSeccion.cshtml" />
+    <Content Include="Views\Roles\Index.cshtml" />
+    <Content Include="Views\Roles\_AgregarRol.cshtml" />
+    <Content Include="Views\Residentes\Index.cshtml" />
+    <Content Include="Views\Residentes\_AgregarResidentes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -602,7 +607,7 @@
       <Name>Helpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{89b56c81-e8f6-4bae-a354-4b16cdeb6caa}</Project>
+      <Project>{ed3c2c6b-2f44-4e01-9271-5cbacc45fa69}</Project>
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>

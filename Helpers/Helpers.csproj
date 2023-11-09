@@ -56,7 +56,9 @@
     <Compile Include="MenuHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="PuertasHelper.cs" />
+    <Compile Include="ResidentesHelper.cs" />
     <Compile Include="ResponseModel.cs" />
+    <Compile Include="RolesHelper.cs" />
     <Compile Include="SeccionHelper.cs" />
     <Compile Include="SessionHelper.cs" />
     <Compile Include="SubMenuHelper.cs" />
@@ -68,7 +70,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{89b56c81-e8f6-4bae-a354-4b16cdeb6caa}</Project>
+      <Project>{ed3c2c6b-2f44-4e01-9271-5cbacc45fa69}</Project>
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>

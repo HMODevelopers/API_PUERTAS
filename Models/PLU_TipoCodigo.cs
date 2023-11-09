@@ -6,22 +6,20 @@ namespace Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class PLU_Seccion
+    public partial class PLU_TipoCodigo
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PLU_Seccion()
+        public PLU_TipoCodigo()
         {
             PLU_Codigos = new HashSet<PLU_Codigos>();
-            PLU_Puertas = new HashSet<PLU_Puertas>();
-            PLU_Residentes = new HashSet<PLU_Residentes>();
         }
 
         [Key]
-        public int IdSeccion { get; set; }
+        public int IdTipoCodigo { get; set; }
 
         [Required]
         [StringLength(255)]
-        public string NombreSeccion { get; set; }
+        public string NombreTipoCodigo { get; set; }
 
         public bool Activo { get; set; }
 
@@ -29,11 +27,5 @@ namespace Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PLU_Codigos> PLU_Codigos { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PLU_Puertas> PLU_Puertas { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PLU_Residentes> PLU_Residentes { get; set; }
     }
 }

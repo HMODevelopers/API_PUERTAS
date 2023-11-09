@@ -6,34 +6,53 @@ namespace Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class PLU_Seccion
+    public partial class PLU_Residentes
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public PLU_Seccion()
+        public PLU_Residentes()
         {
+            PLU_BitacoraAccesos = new HashSet<PLU_BitacoraAccesos>();
+            PLU_BitacoraCodigos = new HashSet<PLU_BitacoraCodigos>();
             PLU_Codigos = new HashSet<PLU_Codigos>();
-            PLU_Puertas = new HashSet<PLU_Puertas>();
-            PLU_Residentes = new HashSet<PLU_Residentes>();
         }
 
         [Key]
+        public int IdResidentes { get; set; }
+
         public int IdSeccion { get; set; }
 
         [Required]
         [StringLength(255)]
-        public string NombreSeccion { get; set; }
+        public string NombreCompleto { get; set; }
+
+        [Required]
+        [StringLength(50)]
+        public string Celular { get; set; }
+
+        [Required]
+        public string Pass { get; set; }
+
+        [Required]
+        [StringLength(10)]
+        public string NoCasa { get; set; }
+
+        public string Domicilio { get; set; }
+
+        public bool Auth { get; set; }
 
         public bool Activo { get; set; }
 
         public DateTime FechaCreacion { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PLU_BitacoraAccesos> PLU_BitacoraAccesos { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PLU_BitacoraCodigos> PLU_BitacoraCodigos { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PLU_Codigos> PLU_Codigos { get; set; }
 
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PLU_Puertas> PLU_Puertas { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PLU_Residentes> PLU_Residentes { get; set; }
+        public virtual PLU_Seccion PLU_Seccion { get; set; }
     }
 }
