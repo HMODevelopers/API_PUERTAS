@@ -20,7 +20,7 @@
                         <tr>
                             <th>#</th>
                             <th>Nombre Completo</th>
-                            <th>Seccion</th>
+                            <th>Sección</th>
                             <th>Celular</th>
                             <th>Domicilio</th>
                             <th>No.Casa</th>
@@ -70,8 +70,8 @@
 
 
         function CargarData() {
-            $('#DataPuertas').DataTable().clear().destroy();
-            var table = $("#DataPuertas").DataTable({
+            $('#DataResidentes').DataTable().clear().destroy();
+            var table = $("#DataResidentes").DataTable({
                 dom: 'Bfrtip',
                 buttons: [
 
@@ -88,17 +88,19 @@
                    type: 'GET',
                },
                columns: [
-                   { "data": "IdPuerta" },
+                   { "data": "IdResidentes" },
+                   { "data": "NombreCompleto" },
                    { "data": "NombreSeccion" },
-                   { "data": "NombrePuerta" },
-                   { "data": "Code" },
+                   { "data": "Celular" },
+                   { "data": "Domicilio" },
+                   { "data": "NoCasa" },
                    {
                        "data": "Activo",
                        "render": function (value) {
                            if (value) {
-                               return "<center><h4><i class='text-success icon-like'></i></h4></center>";
+                               return "<center><h4><i class='text-success icon-user-following'></i></h4></center>";
                            } else {
-                               return "<center><h4><i class='text-danger icon-dislike'></i></h4></center>";
+                               return "<center><h4><i class='text-danger icon-user-unfollow'></i></h4></center>";
                            }
 
                        }
@@ -136,7 +138,7 @@
                      $(".dataTables_paginate > .pagination").addClass("pagination-rounded")}
            });
 
-            cambiar_status("#DataPuertas tbody", table);
+            cambiar_status("#DataResidentes tbody", table);
         }
 
         var cambiar_status = function (tbody, table) {
@@ -145,13 +147,13 @@
             $(tbody).on("click", "button.cambiostatus", function () {
 
                 data = table.row($(this).parents("tr")).data();
-                var id = data.IdPuerta;
+                var id = data.IdResidentes;
                 var activo = data.Activo;
 
 
                 Swal.fire({
                     title: "Estas seguro?",
-                    text: "¡Cambiaras el estatus de la puerta: " + data.NombrePuerta + "!",
+                    text: "¡Cambiaras el estatus de la puerta: " + data.NombreCompleto + "!",
                     type:  "warning",
                     showCancelButton: !0,
                     confirmButtonText: "Aceptar",
@@ -166,7 +168,7 @@
                 if (t.value) {
 
                      $.ajax({
-                        url: '@Url.Action("CambiarStatus", "Puertas")',
+                        url: '@Url.Action("CambiarStatus", "Residentes")',
                         type: 'POST',
                         data: { id: id, activo: activo },
                         success: function (data) {
@@ -213,7 +215,7 @@
 
                      Swal.fire({
                           title: "Cancelado",
-                          text: "Tu puerta está segura",
+                          text: "Tu residente está seguro",
                           type: "error"
                      });
                 }

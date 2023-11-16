@@ -12,6 +12,61 @@ namespace Helpers
     public class ResidentesHelper
     {
 
+        public ResponseModel Acceder(string user, string pass)
+        {
+
+            var rm = new ResponseModel();
+
+            try
+            {
+                using (var ctx = new ModelContent())
+                {
+                    var pass_hash = HashHelper.SHA1(pass);
+                    var usuario = ctx.PLU_Residentes.Where(x => x.Celular == user)
+                                                 .Where(x => x.Pass == pass_hash)
+                                                 .Where(x => x.Activo == true).FirstOrDefault();
+
+                    if (usuario != null)
+                    {
+                        SessionHelper.AddUserToSession(usuario.IdResidentes.ToString());
+                        rm.SetResponse(true);
+                    }
+                    else
+                    {
+                        rm.SetResponse(false, "Celular o Contraseña Incorrecta");
+                    }
+                }
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return rm;
+        }
+
+
+        public PLU_Residentes Obtener(int id)
+        {
+
+            var residente = new PLU_Residentes();
+            try
+            {
+                using (var ctx = new ModelContent())
+                {
+                    residente = ctx.PLU_Residentes.Where(x => x.IdResidentes == id).FirstOrDefault();
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+
+            return residente;
+        }
+
+
         public ResponseModel Agregar(PLU_Residentes plu_residentes)
         {
             var rm = new ResponseModel();
@@ -66,9 +121,6 @@ namespace Helpers
             return rm;
         }
 
-        public static implicit operator ResidentesHelper(RolesHelper v)
-        {
-            throw new NotImplementedException();
-        }
+        
     }
 }

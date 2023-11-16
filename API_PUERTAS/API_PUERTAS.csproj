@@ -162,6 +162,10 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\SampleDirection.cs" />
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
+    <Compile Include="Areas\Residentes\Controllers\CodigosController.cs" />
+    <Compile Include="Areas\Residentes\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Residentes\Controllers\PuertasController.cs" />
+    <Compile Include="Areas\Residentes\ResidentesAreaRegistration.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CatalogosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -484,6 +488,15 @@
     <Content Include="Content\assets\fonts\summernote.woff" />
     <Content Include="Content\assets\js\app.min.js.map" />
     <Content Include="Content\assets\js\vendor.min.js.map" />
+    <Content Include="Areas\Residentes\Views\web.config" />
+    <Content Include="Areas\Residentes\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Residentes\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Residentes\Views\Login\Index.cshtml" />
+    <Content Include="Areas\Residentes\Views\Shared\_Footer.cshtml" />
+    <Content Include="Areas\Residentes\Views\Shared\_Navigation.cshtml" />
+    <Content Include="Areas\Residentes\Views\Shared\_TopNavigation.cshtml" />
+    <Content Include="Areas\Residentes\Views\Puertas\Index.cshtml" />
+    <Content Include="Areas\Residentes\Views\Codigos\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -527,6 +540,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Residentes\Data\" />
     <Folder Include="Models\" />
     <Folder Include="Views\Proyecto\" />
   </ItemGroup>

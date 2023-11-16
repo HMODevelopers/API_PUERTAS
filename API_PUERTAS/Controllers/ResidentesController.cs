@@ -16,7 +16,10 @@ namespace API_PUERTAS.Controllers
         ModelContent db = new ModelContent();
         public ActionResult Index()
         {
-            return View();
+            PLU_Residentes plu_residentes = new PLU_Residentes();
+            plu_residentes.Pass = "96ef9fbd2bc8bedff9185ec427854ca67bfbec29";
+
+            return View(plu_residentes);
         }
 
 
@@ -39,6 +42,7 @@ namespace API_PUERTAS.Controllers
 
             var rm = new ResponseModel();
             ResidentesHelper Residentes = new ResidentesHelper();
+            plu_residentes.Pass = HashHelper.SHA1("123456789$");
             plu_residentes.FechaCreacion = DateTime.Now;
 
             if (ModelState.IsValid)
@@ -72,6 +76,7 @@ namespace API_PUERTAS.Controllers
             var data = db.PLU_Residentes.Where(x => x.IdResidentes == id).FirstOrDefault();
 
             residentes.IdResidentes = data.IdResidentes;
+            residentes.IdSeccion = data.IdSeccion;
             residentes.NombreCompleto = data.NombreCompleto;
             residentes.Celular = data.Celular;
             residentes.Pass = data.Pass;

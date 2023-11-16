@@ -1,5 +1,6 @@
 ﻿@model Models.PLU_Residentes
 
+
 <!--modal -->
 <div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
     <div class="modal-dialog">
@@ -11,6 +12,7 @@
 
             @using (Html.BeginForm("Guardar", "Residentes", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divMenu" }))
             {
+                @Html.HiddenFor( x => x.Pass)
                 <div class="modal-body p-4">
                     <div class="row">
                         <div class="col-md-12">
@@ -32,7 +34,7 @@
                     <div class="row">
                         <div class="col-md-12">
                             <div class="form-group">
-                                <label for="field-1" class="control-label">Nombre Completo</label>
+                                <label for="field-1" class="control-label">Celular</label>
                                 @Html.EditorFor(x => x.Celular, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                 @Html.ValidationMessageFor(x => x.Celular, null, new { @class = "badge badge-danger" })
                             </div>
@@ -42,7 +44,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="field-1" class="control-label">Domicilio</label>
-                                @Html.TextAreaFor(x => x.Domicilio, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                @Html.TextAreaFor(x => x.Domicilio,  new { @class = "form-control" } )
                                 @Html.ValidationMessageFor(x => x.Domicilio, null, new { @class = "badge badge-danger" })
                             </div>
                         </div>

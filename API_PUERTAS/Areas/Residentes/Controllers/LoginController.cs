@@ -6,14 +6,14 @@ using System.Web;
 using System.Web.Mvc;
 using static EDUES_ADMIN.Filters.AdminFilters;
 
-namespace API_PUERTAS.Controllers
+namespace API_PUERTAS.Areas.Residentes.Controllers
 {
-    public class AuthController : Controller
+    public class LoginController : Controller
     {
-        UsuarioHelper Usuario = new UsuarioHelper();
+        ResidentesHelper Residente = new ResidentesHelper();
 
-        // GET: Auth
-        [NoLogin]
+        // GET: Residentes/Login
+        [NoAuth]
         public ActionResult Index()
         {
             return View();
@@ -21,11 +21,11 @@ namespace API_PUERTAS.Controllers
 
         public JsonResult Acceder(string username, string password_text)
         {
-            var rm = Usuario.Acceder(username, password_text);
+            var rm = Residente.Acceder(username, password_text);
 
             if (rm.response)
             {
-                rm.href = "/Home/Index";
+                rm.href = "/Puertas/Index";
             }
 
             return Json(rm);
@@ -34,7 +34,8 @@ namespace API_PUERTAS.Controllers
         public ActionResult Logout()
         {
             SessionHelper.DestroyUserSession();
-            return Redirect("/Auth/Index");
+            return Redirect("/Login/Index");
         }
+
     }
 }
