@@ -10,7 +10,7 @@ using static EDUES_ADMIN.Filters.AdminFilters;
 namespace API_PUERTAS.Controllers
 {
     [Autenticado]
-    public class ResidentesController : Controller
+    public class UsuariosResidentesController : Controller
     {
         // GET: Residentes
         ModelContent db = new ModelContent();

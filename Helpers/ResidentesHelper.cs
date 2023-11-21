@@ -6,6 +6,8 @@ using System.Data.Entity;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web.Security;
+using System.Web;
 
 namespace Helpers
 {
@@ -121,6 +123,17 @@ namespace Helpers
             return rm;
         }
 
-        
+        public static int GetSeccion(int IdResidente)
+        {
+            using (var ctx = new ModelContent())
+            {
+
+                var data = ctx.PLU_Residentes.Where(x => x.IdResidentes == IdResidente).Select(x => new {x.IdSeccion}).FirstOrDefault();
+                return data.IdSeccion;
+            }
+           
+        }
+
+
     }
 }

@@ -8,17 +8,18 @@ using System.Web.Http;
 
 namespace API_PUERTAS.Controllers
 {
-    
+    [RoutePrefix("api/Apertura")]
     public class AperturaController : ApiController
     {
         ModelContent ctx = new ModelContent();
 
 
         [HttpGet]
-        [ActionName("Apertura/{IdSeccion}")]
-        public IHttpActionResult getApertura()
+        [Route("Abrir")]
+        [ActionName("Abrir")]
+        public IHttpActionResult Get([FromUri] int IdSeccion)
         {
-            var data = ctx.PLU_Seccion.Select(x => new { x.CodeBase }).FirstOrDefault();
+            var data = ctx.PLU_Seccion.Where(x => x.IdSeccion == IdSeccion).Select(x => new { x.CodeBase }).FirstOrDefault();
 
             if (data == null)
             {

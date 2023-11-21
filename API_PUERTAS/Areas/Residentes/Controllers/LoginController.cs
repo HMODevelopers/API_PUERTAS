@@ -25,7 +25,7 @@ namespace API_PUERTAS.Areas.Residentes.Controllers
 
             if (rm.response)
             {
-                rm.href = "/Residentes/Puertas/Index";
+                rm.href = "/Residentes/Puerta/Index";
             }
 
             return Json(rm);

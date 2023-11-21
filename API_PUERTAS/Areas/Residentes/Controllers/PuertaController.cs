@@ -11,7 +11,7 @@ using System.Web.Mvc;
 namespace API_PUERTAS.Areas.Residentes.Controllers
 {
 
-    public class PuertasController : Controller
+    public class PuertaController : Controller
     {
         
 
@@ -85,7 +85,5 @@ namespace API_PUERTAS.Areas.Residentes.Controllers
         }
 
        
-
-
     }
 }

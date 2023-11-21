@@ -84,7 +84,7 @@
                 },
 
                ajax: {
-                   url: '@Url.Action("GetResidentes", "Residentes")',
+                   url: '@Url.Action("GetResidentes", "UsuariosResidentes")',
                    type: 'GET',
                },
                columns: [
@@ -168,7 +168,7 @@
                 if (t.value) {
 
                      $.ajax({
-                        url: '@Url.Action("CambiarStatus", "Residentes")',
+                        url: '@Url.Action("CambiarStatus", "UsuariosResidentes")',
                         type: 'POST',
                         data: { id: id, activo: activo },
                         success: function (data) {

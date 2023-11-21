@@ -1,0 +1,63 @@
+﻿@model  Models.PLU_Codigos
+@{
+
+    ViewBag.Title = "_AgregarCodigo";
+}
+
+<div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Crear Código</h4>
+                <button type="button" id="close" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+
+            @using (Html.BeginForm("Guardar", "Codigos", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divMenu" }))
+            {
+
+                <input hidden name="IdResidente" id="IdResidente" value="" />
+                <input hidden name="IdSeccion" id="IdSeccion" value=""/>
+
+                <div class="modal-body p-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">Código</label>
+                                @Html.EditorFor(x => x.Codigo, new { htmlAttributes = new { @class = "form-control", placeholder = "", @readonly = "readonly", } })
+                                @Html.ValidationMessageFor(x => x.Codigo, null, new { @class = "badge badge-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">Tipo Codigo</label>
+                                <select id="IdTipoCodigo" name="IdTipoCodigo" class="form-control"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">Fecha Alta</label>
+                                <input type="date" name="FechaAlta" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">Fecha Baja</label>
+                                <input type="date" name="FechaBaja" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-effect" id="cerrar" data-dismiss="modal">Cerrar</button>
+                    <button data-ajax="true" data-reset="true" type="submit" class="btn btn-info waves-effect waves-light" id="guardar">Guardar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div><!-- /.modal -->

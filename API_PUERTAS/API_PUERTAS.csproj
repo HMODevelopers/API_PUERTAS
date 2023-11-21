@@ -164,14 +164,14 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Areas\Residentes\Controllers\CodigosController.cs" />
     <Compile Include="Areas\Residentes\Controllers\LoginController.cs" />
-    <Compile Include="Areas\Residentes\Controllers\PuertasController.cs" />
+    <Compile Include="Areas\Residentes\Controllers\PuertaController.cs" />
     <Compile Include="Areas\Residentes\ResidentesAreaRegistration.cs" />
     <Compile Include="Controllers\AperturaController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CatalogosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
-    <Compile Include="Controllers\ResidentesController.cs" />
+    <Compile Include="Controllers\UsuariosResidentesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SeccionController.cs" />
     <Compile Include="Controllers\PuertasController.cs" />
@@ -498,8 +498,9 @@
     <Content Include="Areas\Residentes\Views\Shared\_Footer.cshtml" />
     <Content Include="Areas\Residentes\Views\Shared\_Navigation.cshtml" />
     <Content Include="Areas\Residentes\Views\Shared\_TopNavigation.cshtml" />
-    <Content Include="Areas\Residentes\Views\Puertas\Index.cshtml" />
+    <Content Include="Areas\Residentes\Views\Puerta\Index.cshtml" />
     <Content Include="Areas\Residentes\Views\Codigos\Index.cshtml" />
+    <Content Include="Areas\Residentes\Views\Codigos\_AgregarCodigo.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -538,8 +539,8 @@
     <Content Include="Views\Seccion\_AgregarSeccion.cshtml" />
     <Content Include="Views\Roles\Index.cshtml" />
     <Content Include="Views\Roles\_AgregarRol.cshtml" />
-    <Content Include="Views\Residentes\Index.cshtml" />
-    <Content Include="Views\Residentes\_AgregarResidentes.cshtml" />
+    <Content Include="Views\UsuariosResidentes\Index.cshtml" />
+    <Content Include="Views\UsuariosResidentes\_AgregarResidentes.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -31,7 +31,7 @@ else
                 var buttonNumber = $(this).val();
                 var Code = $("#" + buttonNumber).val();
                  $.ajax({
-                        url: '@Url.Action("AbrirPuerta", "Puertas")',
+                        url: '@Url.Action("AbrirPuerta", "Puerta")',
                         type: 'POST',
                         data: { IdPuerta: buttonNumber, Code: Code },
                             success: function (data) {

@@ -23,6 +23,9 @@ namespace Models
 
         public int IdTipoCodigo { get; set; }
 
+        [Required]
+        public int Codigo { get; set; }
+
         [Column(TypeName = "date")]
         public DateTime? FechaAlta { get; set; }
 
