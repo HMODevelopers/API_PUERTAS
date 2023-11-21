@@ -25,7 +25,7 @@ namespace API_PUERTAS.Areas.Residentes.Controllers
 
             if (rm.response)
             {
-                rm.href = "/Puertas/Index";
+                rm.href = "/Residentes/Puertas/Index";
             }
 
             return Json(rm);
@@ -34,7 +34,7 @@ namespace API_PUERTAS.Areas.Residentes.Controllers
         public ActionResult Logout()
         {
             SessionHelper.DestroyUserSession();
-            return Redirect("/Login/Index");
+            return Redirect("/Residentes/Login/Index");
         }
 
     }

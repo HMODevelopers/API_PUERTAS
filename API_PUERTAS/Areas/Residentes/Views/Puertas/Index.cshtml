@@ -1,7 +1,60 @@
-﻿
+﻿@model List<Models.PLU_Puertas>
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Puertas";
 }
 
-<h2>Index</h2>
 
+
+@if (Model != null && Model.Any())
+{
+    <div class="container text-center" style="margin-top:10px;">
+        @foreach (var puerta in Model)
+        {
+
+            <button class="btn btn-primary button" id="abir" value="@puerta.IdPuerta">@puerta.NombrePuerta</button>
+            <input type="text" hidden value="@puerta.Code" id="@puerta.IdPuerta"/>
+        }
+    </div>
+}
+else
+{
+    <p>No hay puertas disponibles.</p>
+}
+
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+            // Asigna un controlador de eventos al hacer clic en los botones
+            $('.button').click(function () {
+
+                var buttonNumber = $(this).val();
+                var Code = $("#" + buttonNumber).val();
+                 $.ajax({
+                        url: '@Url.Action("AbrirPuerta", "Puertas")',
+                        type: 'POST',
+                        data: { IdPuerta: buttonNumber, Code: Code },
+                            success: function (data) {
+
+
+                                 if (data.response) {
+
+                                   console.log("Puerta Abierta:" ,Code);
+
+                                  } else {
+
+                                   console.log("No se pudo cambiar");
+                                  }
+                            },
+                            error: function () {
+                              console.log("Error");
+                            }
+
+                     });
+
+            });
+        });
+
+    </script>
+
+}

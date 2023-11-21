@@ -23,6 +23,10 @@ namespace Models
         [StringLength(255)]
         public string NombreSeccion { get; set; }
 
+        [Required]
+        [StringLength(50)]
+        public string CodeBase { get; set; }
+
         public bool Activo { get; set; }
 
         public DateTime FechaCreacion { get; set; }

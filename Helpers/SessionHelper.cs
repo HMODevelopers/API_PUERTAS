@@ -35,6 +35,20 @@ namespace Helpers
             return user_id;
         }
 
+        public static int GetResidente()
+        {
+            int user_id = 0;
+            if (HttpContext.Current.User != null && HttpContext.Current.User.Identity is FormsIdentity)
+            {
+                FormsAuthenticationTicket ticket = ((FormsIdentity)HttpContext.Current.User.Identity).Ticket;
+                if (ticket != null)
+                {
+                    user_id = Convert.ToInt32(ticket.UserData);
+                }
+            }
+            return user_id;
+        }
+
 
         public static int GetUserAlumno()
         {

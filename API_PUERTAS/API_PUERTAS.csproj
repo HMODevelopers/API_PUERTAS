@@ -166,6 +166,7 @@
     <Compile Include="Areas\Residentes\Controllers\LoginController.cs" />
     <Compile Include="Areas\Residentes\Controllers\PuertasController.cs" />
     <Compile Include="Areas\Residentes\ResidentesAreaRegistration.cs" />
+    <Compile Include="Controllers\AperturaController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CatalogosController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -239,6 +240,7 @@
     <Content Include="Content\assets\images\small\img-6.jpg" />
     <Content Include="Content\assets\images\small\img-7.jpg" />
     <Content Include="Content\assets\images\update.svg" />
+    <Content Include="Content\assets\images\user-icon.png" />
     <Content Include="Content\assets\images\users\user-1.jpg" />
     <Content Include="Content\assets\images\users\user-10.jpg" />
     <Content Include="Content\assets\images\users\user-2.jpg" />
@@ -417,6 +419,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\bootstrap.rtl.css" />
     <Content Include="Content\bootstrap.rtl.min.css" />
+    <Content Include="Content\buttons.css" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.bundle.js" />

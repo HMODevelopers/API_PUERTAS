@@ -1,6 +1,6 @@
 ﻿@{
-    var id = Helpers.SessionHelper.GetUser();
-    Models.PLU_Usuario Usuarios = new Helpers.UsuarioHelper().Obtener(id);
+    var id = Helpers.SessionHelper.GetResidente();
+    Models.PLU_Residentes Residentes = new Helpers.ResidentesHelper().Obtener(id);
 }
 
 <div class="navbar-custom">
@@ -10,9 +10,9 @@
 
         <li class="dropdown notification-list">
             <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
-                <img src="~/Content/assets/images/users/user-1.jpg" alt="user-image" class="rounded-circle">
+                <img src="~/Content/assets/images/user-icon.png" alt="user-image" class="rounded-circle">
                 <span class="pro-user-name ml-1">
-                    @Usuarios.Usuario<i class="mdi mdi-chevron-down"></i>
+                    @Residentes.Celular<i class="mdi mdi-chevron-down"></i>
                 </span>
             </a>
             <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
@@ -35,18 +35,12 @@
                     <span>Configuración</span>
                 </a>
 
-                <!-- item-->
-                @*<a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <i class="fe-lock"></i>
-                        <span>Lock Screen</span>
-                    </a>*@
-
                 <div class="dropdown-divider"></div>
 
                 <!-- item-->
-                <a href="@Url.Action("Logout","Auth")" class="dropdown-item notify-item">
+                <a href="@Url.Action("Logout","Login")" class="dropdown-item notify-item">
                     <i class="fe-log-out"></i>
-                    <span>Logout</span>
+                    <span>Cerrar Sesión</span>
                 </a>
 
             </div>
