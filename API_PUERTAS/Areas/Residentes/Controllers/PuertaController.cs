@@ -7,6 +7,7 @@ using System.Timers;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Threading;
 
 namespace API_PUERTAS.Areas.Residentes.Controllers
 {
@@ -55,11 +56,34 @@ namespace API_PUERTAS.Areas.Residentes.Controllers
                             FechaCreacion = data.FechaCreacion
                         };
 
+                        var sec1 = new PLU_Seccion
+                        {
+                            IdSeccion = data.IdSeccion,
+                            NombreSeccion = data.NombreSeccion,
+                            CodeBase = "CODE0000000000000",
+                            Activo = data.Activo,
+                            FechaCreacion = data.FechaCreacion
+                        };
+
+                        var acceso = new PLU_BitacoraAccesos
+                        {
+                            IdResidente = IdResidente,
+                            FechaUso = DateTime.Now,
+                            Activo = true,
+                            FechaCreacion = DateTime.Now
+                        };
+
+
                         var seccionHelper = new SeccionHelper();
+                        var bitacoraaccesoHelper = new BitacoraAccessoHelper();
+
                         rm = seccionHelper.SeccionApertura(sec);
+                        rm = bitacoraaccesoHelper.AgregarAccesoApp(acceso);
 
                         if (rm.response)
                         {
+                            Thread.Sleep(2000);
+                            rm = seccionHelper.CambiarCidigo(sec1);
                             rm.error = false;
                         }
                         else

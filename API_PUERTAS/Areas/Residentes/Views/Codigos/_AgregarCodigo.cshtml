@@ -32,7 +32,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="field-1" class="control-label">Tipo Codigo</label>
-                                <select id="IdTipoCodigo" name="IdTipoCodigo" class="form-control"></select>
+                                <select id="IdTipoCodigo" name="IdTipoCodigo" class="form-control" onchange="TipoCodigo(this.value)"></select>
                             </div>
                         </div>
                     </div>
@@ -40,7 +40,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="field-1" class="control-label">Fecha Alta</label>
-                                <input type="date" name="FechaAlta" class="form-control" />
+                                <input type="date" name="FechaAlta" id="FechaAlta" class="form-control" disabled />
                             </div>
                         </div>
                     </div>
@@ -48,7 +48,7 @@
                         <div class="col-md-12">
                             <div class="form-group">
                                 <label for="field-1" class="control-label">Fecha Baja</label>
-                                <input type="date" name="FechaBaja" class="form-control" />
+                                <input type="date" name="FechaBaja" id="FechaBaja" class="form-control" disabled />
                             </div>
                         </div>
                     </div>

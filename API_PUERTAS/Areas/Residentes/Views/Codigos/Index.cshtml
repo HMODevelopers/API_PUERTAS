@@ -50,8 +50,29 @@
 
             $("#IdResidente").val(@id);
             $("#IdSeccion").val(@IdSeccion);
+
             
         });
+
+        function TipoCodigo(selectedValue) {
+
+            // Verifica el valor seleccionado
+            console.log(selectedValue);
+
+            if (selectedValue == 2) {
+
+                // Desactiva el input de fecha
+                $('#FechaAlta').prop('disabled', true);
+                $('#FechaBaja').prop('disabled', true);
+
+            } else {
+
+                // Habilita el input de fecha para otras opciones
+                $('#FechaAlta').prop('disabled', false);
+                $('#FechaBaja').prop('disabled', false);
+
+            }
+        }
 
         function getSecciones() {
 
@@ -116,7 +137,7 @@
                    { "data": "Codigo" },
                    { "data": "NombreTipoCodigo" },
                    {
-                       "data": "FechaCreacion", "render": function (value) {
+                       "data": "FechaAlta", "render": function (value) {
                            if (value === null) return "";
 
                            var pattern = /Date\(([^)]+)\)/;
@@ -127,7 +148,7 @@
                        }
 },
                    {
-                       "data": "FechaCreacion", "render": function (value) {
+                       "data": "FechaBaja", "render": function (value) {
                            if (value === null) return "";
 
                            var pattern = /Date\(([^)]+)\)/;

@@ -71,13 +71,13 @@ namespace API_PUERTAS.Areas.Residentes.Controllers
                 if (rm.response)
                 {
                     rm.message =  "Codigo agregado con exito.";
-                    rm.function = "location.reload();";
+                    rm.function = "CargarData();getSecciones();generarCodigo();$('#close').trigger('click');";
                     rm.error = false;
                 }
                 else
                 {
                     rm.message =  "Error al agregar Codigo.";
-                    rm.function = "location.reload();";
+                    rm.function = "CargarData();getSecciones();generarCodigo();$('#close').trigger('click');";
                     rm.error = true;
                 }
             }

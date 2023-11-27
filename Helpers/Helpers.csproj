@@ -52,6 +52,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BitacoraAccessoHelper.cs" />
     <Compile Include="CodigosHelper.cs" />
     <Compile Include="HashHelper.cs" />
     <Compile Include="MenuHelper.cs" />

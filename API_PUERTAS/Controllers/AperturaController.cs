@@ -1,4 +1,5 @@
-﻿using Models;
+﻿using Helpers;
+using Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,18 +16,173 @@ namespace API_PUERTAS.Controllers
 
 
         [HttpGet]
-        [Route("Abrir")]
-        [ActionName("Abrir")]
-        public IHttpActionResult Get([FromUri] int IdSeccion)
+        [Route("Seccion/{IdSeccion}")]
+        public IHttpActionResult GetSeccion([FromUri] int IdSeccion)
         {
             var data = ctx.PLU_Seccion.Where(x => x.IdSeccion == IdSeccion).Select(x => new { x.CodeBase }).FirstOrDefault();
+
+            var respuesta = new
+            {
+                respuesta = data.CodeBase
+            };
+
 
             if (data == null)
             {
                 return NotFound();
             }
 
-            return Ok(data.CodeBase);
+            return Ok(respuesta);
         }
+
+
+        [HttpGet]
+        [Route("Codigos/{Codigo}")]
+        public IHttpActionResult GetCodigo([FromUri] int Codigo)
+        {
+
+            var data = ctx.PLU_Codigos.Where(x => x.Codigo == Codigo).Select(x => new { x.IdTipoCodigo, x.IdCodigo, x.IdResidente , x.IdSeccion, x.Codigo, x.FechaAlta, x.FechaBaja , x.FechaCreacion}).FirstOrDefault();
+            var bitacoraaccesoHelper = new BitacoraAccessoHelper();
+            var codigoshelper = new CodigosHelper();
+
+
+            if (data == null)
+            {
+                var respuesta = new
+                {
+                    respuesta = "CODE0000000000000"
+                };
+
+                return Ok(respuesta);
+            }
+            else
+            {
+                var accescodigo1 = new PLU_BitacoraCodigos
+                {
+                    IdCodigo = data.IdCodigo,
+                    IdResidente = data.IdResidente,
+                    FechaUso = DateTime.Now,
+                    Activo = true,
+                    FechaCreacion = DateTime.Now
+                };
+
+                var Codigo1 = new PLU_Codigos
+                {
+                    IdCodigo = data.IdCodigo,
+                    IdResidente = data.IdResidente,
+                    IdSeccion = data.IdSeccion,
+                    IdTipoCodigo = data.IdTipoCodigo,
+                    Codigo = data.Codigo,
+                    FechaAlta = data.FechaAlta,
+                    FechaBaja = data.FechaBaja,
+                    Activo = false,
+                    FechaCreacion = data.FechaCreacion
+                };
+
+                if (data.IdTipoCodigo == 2)
+                {
+                    // Verificar si está activo
+                    bool estaActivo = ObtenerEstadoActivo(Codigo);
+
+                    if (estaActivo)
+                    {
+
+                        codigoshelper.CambiarStatus(Codigo1);
+                        bitacoraaccesoHelper.AgregarAccesoCodigo(accescodigo1);
+
+                        var respuesta = new
+                        {
+                            respuesta = "CODE1000000000000"
+                        };
+
+                        return Ok(respuesta);
+                    }
+                    else
+                    {
+                        var respuesta = new
+                        {
+                            respuesta = "CODE0000000000000"
+                        };
+
+                        return Ok(respuesta);
+                    }
+                }
+                else if (data.IdTipoCodigo == 3)
+                {
+                    // Verificar la fecha de baja
+                    bool fechaBajaValida = VerificarFechaBaja(Codigo);
+
+                    if (fechaBajaValida)
+                    {
+                        var respuesta = new
+                        {
+                            respuesta = "CODE1000000000000"
+                        };
+
+                        bitacoraaccesoHelper.AgregarAccesoCodigo(accescodigo1);
+                        return Ok(respuesta);
+                    }
+                    else
+                    {
+                        var respuesta = new
+                        {
+                            respuesta = "CODE0000000000000"
+                        };
+
+                        return Ok(respuesta);
+                    }
+                }
+                else
+                {
+                    var respuesta = new
+                    {
+                        respuesta = "CODE0000000000000"
+                    };
+
+                    return Ok(respuesta);
+                }
+            }
+
+          
+        }
+
+
+        private bool ObtenerEstadoActivo(int codigo)
+        {
+            var data = ctx.PLU_Codigos.Where(x => x.Codigo == codigo).Select(x => new { x.Activo }).FirstOrDefault();
+
+            if (data.Activo)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+            
+        }
+
+        private bool VerificarFechaBaja(int codigo)
+        {
+            var data = ctx.PLU_Codigos.Where(x => x.Codigo == codigo && x.Activo == true).Select(x => new { x.FechaBaja }).FirstOrDefault();
+
+
+            DateTime fechaBaja = (DateTime)data.FechaBaja;
+            DateTime fechaActual = DateTime.Now.Date;
+
+            if (fechaBaja.Date >= fechaActual)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+            
+        }
+
+       
+
     }
 }
