@@ -134,6 +134,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
+    <Compile Include="Areas\Admin\Controllers\AccesarController.cs" />
+    <Compile Include="Areas\Admin\Controllers\BitacorasController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ResiController.cs" />
     <Compile Include="Areas\HelpPage\ApiDescriptionExtensions.cs" />
     <Compile Include="Areas\HelpPage\App_Start\HelpPageConfig.cs" />
     <Compile Include="Areas\HelpPage\Controllers\HelpController.cs" />
@@ -501,6 +505,17 @@
     <Content Include="Areas\Residentes\Views\Puerta\Index.cshtml" />
     <Content Include="Areas\Residentes\Views\Codigos\Index.cshtml" />
     <Content Include="Areas\Residentes\Views\Codigos\_AgregarCodigo.cshtml" />
+    <Content Include="Areas\Admin\Views\web.config" />
+    <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
+    <Content Include="Areas\Admin\Views\Accesar\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Footer.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Navigation.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_TopNavigation.cshtml" />
+    <Content Include="Areas\Admin\Views\Bitacoras\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Bitacoras\BitacoraCode.cshtml" />
+    <Content Include="Areas\Admin\Views\Resi\_AgregarResidentes.cshtml" />
+    <Content Include="Areas\Admin\Views\Resi\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -541,11 +556,12 @@
     <Content Include="Views\Roles\_AgregarRol.cshtml" />
     <Content Include="Views\UsuariosResidentes\Index.cshtml" />
     <Content Include="Views\UsuariosResidentes\_AgregarResidentes.cshtml" />
+    <Content Include="Views\Home\BitacoraCode.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Residentes\Data\" />
-    <Folder Include="Models\" />
     <Folder Include="Views\Proyecto\" />
   </ItemGroup>
   <ItemGroup>

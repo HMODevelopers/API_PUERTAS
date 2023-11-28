@@ -4,25 +4,26 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using static EDUES_ADMIN.Filters.AdminFilters;
 
-namespace API_PUERTAS.Controllers
+namespace API_PUERTAS.Areas.Admin.Controllers
 {
-    [Autenticado]
-    public class HomeController : Controller
+    public class BitacorasController : Controller
     {
         ModelContent db = new ModelContent();
-
+        // GET: Admin/Bitacoras
         public ActionResult Index()
         {
-
-            return View();
+            var IdUsuario = Helpers.SessionHelper.GetUser();
+            var data = db.PLU_Usuario.Where(x => x.IdUsuario == IdUsuario).FirstOrDefault();
+            return View(data);
         }
 
         public ActionResult BitacoraCode()
         {
+            var IdUsuario = Helpers.SessionHelper.GetUser();
+            var data = db.PLU_Usuario.Where(x => x.IdUsuario == IdUsuario).FirstOrDefault();
 
-            return View();
+            return View(data);
         }
 
         public JsonResult GetBitacoraApp(int IdSeccion)
@@ -39,15 +40,6 @@ namespace API_PUERTAS.Controllers
             var jsonResult = Json(new { data }, JsonRequestBehavior.AllowGet);
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;
-        }
-
-
-        [HttpGet]
-        public JsonResult GetSecciones()
-        {
-            var data = db.PLU_Seccion.Select(x => new { id = x.IdSeccion, text = x.NombreSeccion }).ToList();
-            return Json(data, JsonRequestBehavior.AllowGet);
-
         }
     }
 }

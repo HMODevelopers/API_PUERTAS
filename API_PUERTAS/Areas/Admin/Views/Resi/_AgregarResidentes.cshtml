@@ -1,0 +1,78 @@
+﻿@model Models.PLU_Residentes
+
+
+<!--modal -->
+<div id="con-close-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Agregar Residente</h4>
+                <button type="button" id="close" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+            </div>
+
+            @using (Html.BeginForm("Guardar", "Resi", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divMenu" }))
+            {
+                @Html.HiddenFor( x => x.Pass)
+                <div class="modal-body p-4">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">Nombre Completo</label>
+                                @Html.EditorFor(x => x.NombreCompleto, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                @Html.ValidationMessageFor(x => x.NombreCompleto, null, new { @class = "badge badge-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">Nombre Seccion</label>
+                                <select id="IdSeccion" name="IdSeccion" class="form-control"></select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">Celular</label>
+                                @Html.EditorFor(x => x.Celular, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                @Html.ValidationMessageFor(x => x.Celular, null, new { @class = "badge badge-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">Domicilio</label>
+                                @Html.TextAreaFor(x => x.Domicilio,  new { @class = "form-control" } )
+                                @Html.ValidationMessageFor(x => x.Domicilio, null, new { @class = "badge badge-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="field-1" class="control-label">No. Casa</label>
+                                @Html.EditorFor(x => x.NoCasa, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                @Html.ValidationMessageFor(x => x.NoCasa, null, new { @class = "badge badge-danger" })
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                @Html.CheckBoxFor(x => x.Activo, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
+                                <label for="Activo">Activo</label>
+                                @Html.ValidationMessageFor(x => x.Activo, null, new { @class = "badge badge-danger" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary waves-effect" id="cerrar" data-dismiss="modal">Cerrar</button>
+                    <button data-ajax="true" data-reset="true" type="submit" class="btn btn-info waves-effect waves-light" id="guardar">Guardar</button>
+                </div>
+            }
+        </div>
+    </div>
+</div><!-- /.modal -->

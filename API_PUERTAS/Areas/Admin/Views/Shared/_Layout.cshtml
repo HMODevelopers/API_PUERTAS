@@ -1,0 +1,123 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>@ViewBag.Title - ADMIN HMO-PUERTAS</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta content="Coderthemes" name="author" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="~/Content/assets/images/favicon.ico">
+
+    <!-- App css -->
+    @Styles.Render("~/Content/css")
+    <link href="~/Content/custom.css" rel="stylesheet" type="text/css" />
+
+
+    <!-- DATATABLE party css -->
+    <link href="~/Content/assets/libs/datatables/dataTables.bootstrap4.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/assets/libs/datatables/responsive.bootstrap4.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/assets/libs/datatables/buttons.bootstrap4.css" rel="stylesheet" type="text/css" />
+    <link href="~/Content/assets/libs/datatables/select.bootstrap4.css" rel="stylesheet" type="text/css" />
+    <!-- DATATABLE party css end -->
+    <!-- Sweet Alert-->
+    <link href="~/Content/assets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css" />
+    <!-- Sweet Alert-->
+
+    <link href="~/Content/buttons.css" rel="stylesheet" type="text/css"/>
+
+</head>
+
+<body>
+
+    <!-- Begin page -->
+    <div id="wrapper">
+
+        <div class="wrapper-loader fade" id="LoadingImage" style="display: none;">
+            <div class="loader">
+                <div class="loader__figure"></div>
+                <p class="loader__label">Cargando...</p>
+            </div>
+        </div>
+        <!-- Topbar Start -->
+        @Html.Partial("_TopNavigation")
+        <!-- end Topbar -->
+        <!-- ========== Left Sidebar Start ========== -->
+        @Html.Partial("_Navigation")
+        <!-- Left Sidebar End -->
+        <!-- ============================================================== -->
+        <!-- Start Page Content here -->
+        <!-- ============================================================== -->
+
+        <div class="content-page">
+            <div class="content">
+
+                <!-- Start Content-->
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box">
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">Xeria</a></li>
+                                        <li class="breadcrumb-item"><a href="javascript: void(0);">@ViewBag.Title</a></li>
+                                        <li class="breadcrumb-item active">@ViewBag.Title</li>
+                                    </ol>
+                                </div>
+                                <h4 class="page-title">@ViewBag.Title</h4>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+                    @RenderBody()
+
+                </div> <!-- container -->
+
+            </div> <!-- content -->
+            <!-- Footer Start -->
+            @Html.Partial("_Footer")
+            <!-- end Footer -->
+
+        </div>
+
+        <!-- ============================================================== -->
+        <!-- End Page content -->
+        <!-- ============================================================== -->
+
+
+    </div>
+    <!-- END wrapper -->
+    <!-- Right bar overlay-->
+    <div class="rightbar-overlay"></div>
+
+    @Scripts.Render("~/bundles/Javascript")
+    <!-- third party js -->
+    <script src="~/Content/assets/libs/datatables/jquery.dataTables.min.js"></script>
+    <script src="~/Content/assets/libs/datatables/dataTables.bootstrap4.js"></script>
+    <script src="~/Content/assets/libs/datatables/dataTables.responsive.min.js"></script>
+    <script src="~/Content/assets/libs/datatables/responsive.bootstrap4.min.js"></script>
+    <script src="~/Content/assets/libs/datatables/dataTables.buttons.min.js"></script>
+    <script src="~/Content/assets/libs/datatables/buttons.bootstrap4.min.js"></script>
+    <script src="~/Content/assets/libs/datatables/buttons.html5.min.js"></script>
+    <script src="~/Content/assets/libs/datatables/buttons.flash.min.js"></script>
+    <script src="~/Content/assets/libs/datatables/buttons.print.min.js"></script>
+    <script src="~/Content/assets/libs/datatables/dataTables.keyTable.min.js"></script>
+    <script src="~/Content/assets/libs/datatables/dataTables.select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
+    <!-- third party js ends -->
+    <!--SweetAlert-->
+    <script src="~/Content/assets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <!--End SweetAlert-->
+
+    <script src="~/Content/assets/js/jquery.validate.min.js"></script>
+    <script src="~/Content/assets/js/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Content/assets/js/jquery.form.js"></script>
+    <script src="~/Content/assets/js/jQuery_1.js"></script>
+    <script src="~/Content/assets/js/ini_3.js"></script>
+    @RenderSection("scripts", required: false)
+
+</body>
+</html>

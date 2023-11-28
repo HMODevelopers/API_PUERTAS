@@ -1,0 +1,78 @@
+﻿@{
+    var id = Helpers.SessionHelper.GetResidente();
+    Models.PLU_Usuario Residentes = new Helpers.UsuarioHelper().Obtener(id);
+}
+
+<div class="navbar-custom">
+    <ul class="list-unstyled topnav-menu float-right mb-0">
+
+
+
+        <li class="dropdown notification-list">
+            <a class="nav-link dropdown-toggle nav-user mr-0 waves-effect" data-toggle="dropdown" href="#" role="button" aria-haspopup="false" aria-expanded="false">
+                <img src="~/Content/assets/images/user-icon.png" alt="user-image" class="rounded-circle">
+                <span class="pro-user-name ml-1">
+                    @Residentes.Usuario<i class="mdi mdi-chevron-down"></i>
+                </span>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                <!-- item-->
+                <div class="dropdown-item noti-title">
+                    <h5 class="m-0 text-white">
+                        Bienvenido !
+                    </h5>
+                </div>
+
+                <!-- item-->
+                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <i class="fe-user"></i>
+                    <span>Mi Cuenta</span>
+                </a>
+
+                <!-- item-->
+                <a href="javascript:void(0);" class="dropdown-item notify-item">
+                    <i class="fe-settings"></i>
+                    <span>Configuración</span>
+                </a>
+
+                <div class="dropdown-divider"></div>
+
+                <!-- item-->
+                <a href="@Url.Action("Logout","Accesar")" class="dropdown-item notify-item">
+                    <i class="fe-log-out"></i>
+                    <span>Cerrar Sesión</span>
+                </a>
+
+            </div>
+        </li>
+
+
+
+
+    </ul>
+
+    <!-- LOGO -->
+    <div class="logo-box">
+        <a href="" class="logo text-center">
+            <span class="logo-lg">
+                <img src="~/Content/assets/images/logo-light.png" alt="" height="16">
+                <!-- <span class="logo-lg-text-light">Xeria</span> -->
+            </span>
+            <span class="logo-sm">
+                <!-- <span class="logo-sm-text-dark">X</span> -->
+                <img src="~/Content/assets/images/logo-sm.png" alt="" height="18">
+            </span>
+        </a>
+    </div>
+
+    <ul class="list-unstyled topnav-menu topnav-menu-left m-0">
+        <li>
+            <button class="button-menu-mobile waves-effect">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </li>
+
+    </ul>
+</div>

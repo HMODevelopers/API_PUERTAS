@@ -15,16 +15,21 @@ namespace API_PUERTAS.Controllers
         ModelContent db = new ModelContent();
         public ActionResult Index()
         {
-            var roles = db.PLU_Rol.ToList();
+            PLU_Usuario plu_usuario = new PLU_Usuario();
+            plu_usuario.Pass = "96ef9fbd2bc8bedff9185ec427854ca67bfbec29";
+            var roles = db.PLU_Rol.Where(x => x.IdRol  != 2).ToList();
+            var Secciones = db.PLU_Seccion.ToList();
+
             ViewBag.Roles = new SelectList(roles, "IdRol", "NombreRol");
-            return View();
+            ViewBag.Secciones = new SelectList(Secciones, "IdSeccion", "NombreSeccion");
+            return View( plu_usuario);
         }
 
         [HttpGet]
         public JsonResult GetUsuarios()
         {
 
-            var data = db.PLU_Usuario.Select(x => new { x.IdUsuario, x.PLU_Rol.NombreRol, x.Usuario, x.Pass, x.Activo, x.FechaCreacion }).ToList();
+            var data = db.PLU_Usuario.Select(x => new { x.IdUsuario, x.PLU_Rol.NombreRol,x.PLU_Seccion.NombreSeccion,x.Usuario, x.Pass, x.Activo, x.FechaCreacion }).ToList();
 
             var jsonResult = Json(new { data }, JsonRequestBehavior.AllowGet);
             jsonResult.MaxJsonLength = int.MaxValue;
@@ -37,7 +42,6 @@ namespace API_PUERTAS.Controllers
 
             var rm = new ResponseModel();
             UsuarioHelper user = new UsuarioHelper();
-            plu_usuario.Pass = HashHelper.SHA1("123456789$");
             plu_usuario.FechaCreacion = DateTime.Now;
 
             if (ModelState.IsValid)
@@ -59,7 +63,6 @@ namespace API_PUERTAS.Controllers
             }
             return Json(rm);
         }
-
 
         [HttpPost]
         public JsonResult CambiarStatus(int id, bool activo)

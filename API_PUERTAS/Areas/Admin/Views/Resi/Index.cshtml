@@ -1,26 +1,29 @@
-﻿@{
-    ViewBag.Title = "USUARIOS";
-    ViewBag.Controller = "Configuración";
-    ViewBag.Pagina = "Usuarios";
+﻿
+@{
+    ViewBag.Title = "RESIDENTES";
 }
+
+
 <div class="row">
     <div class="col-12">
         <div class="card">
             <div class="card-body">
-                <h4 class="header-title">Usuarios</h4>
+                <h4 class="header-title">Residentes</h4>
                 <p class="text-muted font-13 mb-4"></p>
                 <div class="row">
                     <div class="col col-ms-4">
-                        <button class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal"><span><i class="la la-add"></i></span>Agregar Usuario</button>
+                        <button class="btn btn-primary waves-effect waves-light" data-toggle="modal" data-target="#con-close-modal"><span><i class="la la-add"></i></span>Agregar Puerta</button>
                     </div>
                 </div>
-                <table width="100%" id="DataUsuarios" class="table table-striped table-bordered dt-responsive nowrap">
+                <table width="100%" id="DataResidentes" class="table table-striped table-bordered dt-responsive nowrap">
                     <thead>
                         <tr>
                             <th>#</th>
-                            <th>Nombre Rol</th>
-                            <th>Usuario</th>
-                            <th>Password</th>
+                            <th>Nombre Completo</th>
+                            <th>Sección</th>
+                            <th>Celular</th>
+                            <th>Domicilio</th>
+                            <th>No.Casa</th>
                             <th>Activo</th>
                             <th>Fecha Creación</th>
                             <th>Acciones</th>
@@ -33,8 +36,7 @@
     </div><!-- end col-->
 </div>
 
-
-@Html.Partial("_agregarUsuario")
+@Html.Partial("_AgregarResidentes")
 
 @section Scripts{
 
@@ -42,28 +44,34 @@
         $(document).ready(function () {
 
             CargarData();
-
-            $("#IdRol").change(function () {
-                // Obtener el valor seleccionado
-                var selectedValue = $(this).val();
-                console.log(selectedValue);
-
-                // Mostrar u ocultar el campo oculto basado en la selección
-                if (selectedValue == 1002) {
-                    $("#seccion").css("display", "block");
-                } else {
-                    $("#seccion").css("display", "none");
-                }
-            });
+            getSecciones();
 
         });
 
+        function getSecciones() {
 
-       
+            $.ajax({
+                url: '@Url.Action("GetSecciones", "Resi")',
+                type: 'GET',
+                dataType: 'json',
+                success: function (data) {
+                    $.each(data, function (index, item) {
+                        $('#IdSeccion').append($('<option>', {
+                            value: item.Value,
+                            text: item.Text
+                        }));
+                    });
+                },
+                error: function (error) {
+                    console.error('Error fetching data: ' + error);
+                }
+            });
+        }
+
 
         function CargarData() {
-            $('#DataUsuarios').DataTable().clear().destroy();
-            var table = $("#DataUsuarios").DataTable({
+            $('#DataResidentes').DataTable().clear().destroy();
+            var table = $("#DataResidentes").DataTable({
                 dom: 'Bfrtip',
                 buttons: [
 
@@ -76,14 +84,16 @@
                 },
 
                ajax: {
-                   url: '@Url.Action("GetUsuarios", "Usuarios")',
+                   url: '@Url.Action("GetResidentes", "Resi")',
                    type: 'GET',
                },
                columns: [
-                   { "data": "IdUsuario" },
-                   { "data": "NombreRol" },
-                   { "data": "Usuario" },
-                   { "data": "Pass" },
+                   { "data": "IdResidentes" },
+                   { "data": "NombreCompleto" },
+                   { "data": "NombreSeccion" },
+                   { "data": "Celular" },
+                   { "data": "Domicilio" },
+                   { "data": "NoCasa" },
                    {
                        "data": "Activo",
                        "render": function (value) {
@@ -128,7 +138,7 @@
                      $(".dataTables_paginate > .pagination").addClass("pagination-rounded")}
            });
 
-            cambiar_status("#DataUsuarios tbody", table);
+            cambiar_status("#DataResidentes tbody", table);
         }
 
         var cambiar_status = function (tbody, table) {
@@ -137,13 +147,13 @@
             $(tbody).on("click", "button.cambiostatus", function () {
 
                 data = table.row($(this).parents("tr")).data();
-                var id = data.IdUsuario;
+                var id = data.IdResidentes;
                 var activo = data.Activo;
 
 
                 Swal.fire({
                     title: "Estas seguro?",
-                    text: "¡Cambiaras el estatus del usuario: " + data.Usuario + "!",
+                    text: "¡Cambiaras el estatus de la puerta: " + data.NombreCompleto + "!",
                     type:  "warning",
                     showCancelButton: !0,
                     confirmButtonText: "Aceptar",
@@ -158,7 +168,7 @@
                 if (t.value) {
 
                      $.ajax({
-                        url: '@Url.Action("CambiarStatus", "Usuarios")',
+                        url: '@Url.Action("CambiarStatus", "Resi")',
                         type: 'POST',
                         data: { id: id, activo: activo },
                         success: function (data) {
@@ -205,7 +215,7 @@
 
                      Swal.fire({
                           title: "Cancelado",
-                          text: "Tu usuario está seguro",
+                          text: "Tu residente está seguro",
                           type: "error"
                      });
                 }

@@ -13,6 +13,8 @@ namespace Models
 
         public int IdRol { get; set; }
 
+        public int? IdSeccion { get; set; }
+
         [Required]
         [StringLength(100)]
         public string Usuario { get; set; }
@@ -26,5 +28,7 @@ namespace Models
         public DateTime? FechaCreacion { get; set; }
 
         public virtual PLU_Rol PLU_Rol { get; set; }
+
+        public virtual PLU_Seccion PLU_Seccion { get; set; }
     }
 }
