@@ -8,10 +8,11 @@ using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using System.Threading;
+using static EDUES_ADMIN.Filters.AdminFilters;
 
 namespace API_PUERTAS.Areas.Residentes.Controllers
 {
-
+    [Auth]
     public class PuertaController : Controller
     {
         
@@ -26,7 +27,7 @@ namespace API_PUERTAS.Areas.Residentes.Controllers
 
                 if (seccion != null)
                 {
-                    puertas = db.PLU_Puertas.Where(x => x.IdSeccion == seccion.IdSeccion).ToList();
+                    puertas = db.PLU_Puertas.Where(x => x.IdSeccion == seccion.IdSeccion && x.Activo == true).ToList();
                 }
 
                 return View(puertas);

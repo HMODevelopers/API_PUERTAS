@@ -103,5 +103,46 @@ namespace API_PUERTAS.Controllers
             return Json(rm);
         }
 
+        [HttpPost]
+        public JsonResult DeleteUsuario(int IdUsuario)
+        {
+
+            var rm = new ResponseModel();
+            UsuarioHelper Usuario = new UsuarioHelper();
+
+            var data = db.PLU_Usuario.Where(x => x.IdUsuario == IdUsuario).FirstOrDefault();
+
+            var usuario = new PLU_Usuario
+            {
+                IdUsuario = data.IdUsuario,
+                IdRol  = data.IdRol,
+                IdSeccion = data.IdSeccion,
+                Usuario = data.Usuario,
+                Pass = data.Pass,
+                Activo = data.Activo,
+                FechaCreacion = data.FechaCreacion
+
+            };
+
+            if (ModelState.IsValid)
+            {
+
+                rm = Usuario.Delete(usuario);
+                if (rm.response)
+                {
+                    rm.message = "Usuario Eliminado con exito.";
+                    rm.function = "CargarData();$('#close').trigger('click');";
+                    rm.error = false;
+                }
+                else
+                {
+                    rm.message = "Error al Eliminar Usuario.";
+                    rm.function = "CargarData();$('#close').trigger('click');";
+                    rm.error = true;
+                }
+            }
+            return Json(rm);
+        }
+
     }
 }

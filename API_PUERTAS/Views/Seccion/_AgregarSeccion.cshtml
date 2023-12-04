@@ -9,8 +9,9 @@
                 <button type="button" id="close" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
 
-            @using (Html.BeginForm("Guardar", "Usuarios", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divMenu" }))
+            @using (Html.BeginForm("Guardar", "Seccion", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divMenu" }))
             {
+                <input type="hidden" name="CodeBase" id="CodeBase" value="CODE0000000000000" />
                 <div class="modal-body p-4">
                     <div class="row">
                         <div class="col-md-12">

@@ -108,5 +108,45 @@ namespace API_PUERTAS.Controllers
 
             return Json(rm);
         }
+
+        [HttpPost]
+        public JsonResult DeletePuerta(int IdPuerta)
+        {
+
+            var rm = new ResponseModel();
+            PuertasHelper Puertas = new PuertasHelper();
+
+            var data = db.PLU_Puertas.Where(x => x.IdPuerta == IdPuerta).FirstOrDefault();
+
+            var puerta = new PLU_Puertas
+            {
+                IdPuerta = data.IdPuerta,
+                IdSeccion = data.IdSeccion,
+                NombrePuerta = data.NombrePuerta,
+                Code= data.Code,
+                Activo = data.Activo,
+                FechaCreacion = data.FechaCreacion
+
+            };
+
+            if (ModelState.IsValid)
+            {
+
+                rm = Puertas.Delete(puerta);
+                if (rm.response)
+                {
+                    rm.message = "Puerta Eliminada con exito.";
+                    rm.function = "CargarData();$('#close').trigger('click');";
+                    rm.error = false;
+                }
+                else
+                {
+                    rm.message = "Error al Eliminar Puerta.";
+                    rm.function = "CargarData();$('#close').trigger('click');";
+                    rm.error = true;
+                }
+            }
+            return Json(rm);
+        }
     }
 }

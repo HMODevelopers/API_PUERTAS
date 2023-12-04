@@ -4,13 +4,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static EDUES_ADMIN.Filters.AdminFilters;
 
 namespace API_PUERTAS.Areas.Admin.Controllers
 {
     public class AccesarController : Controller
     {
-        // GET: Admin/Auth
+        
         AdminHelper Admin = new AdminHelper();
+
+        [NoAdmin]
         public ActionResult Index()
         {
             return View();

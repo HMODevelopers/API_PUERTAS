@@ -68,5 +68,32 @@ namespace Helpers
             return rm;
         }
 
+        public ResponseModel Delete(PLU_Puertas plu_puerta)
+        {
+            var rm = new ResponseModel();
+            try
+            {
+                using (var ctx = new ModelContent())
+                {
+
+                    ctx.Entry(plu_puerta).State = EntityState.Deleted;
+                    ctx.SaveChanges();
+                    rm.SetResponse(true);
+
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                throw e;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return rm;
+        }
+
     }
 }

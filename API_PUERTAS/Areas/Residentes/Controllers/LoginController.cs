@@ -8,6 +8,7 @@ using static EDUES_ADMIN.Filters.AdminFilters;
 
 namespace API_PUERTAS.Areas.Residentes.Controllers
 {
+
     public class LoginController : Controller
     {
         ResidentesHelper Residente = new ResidentesHelper();

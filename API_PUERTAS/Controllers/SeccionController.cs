@@ -39,7 +39,7 @@ namespace API_PUERTAS.Controllers
 
             var rm = new ResponseModel();
             SeccionHelper seccion = new SeccionHelper();
-
+            plu_seccion.CodeBase = "CODE0000000000000";
             plu_seccion.FechaCreacion = DateTime.Now;
 
             if (ModelState.IsValid)
@@ -98,6 +98,46 @@ namespace API_PUERTAS.Controllers
                 rm.error = true;
             }
 
+            return Json(rm);
+        }
+
+
+        [HttpPost]
+        public JsonResult DeleteSeccion(int IdSeccion)
+        {
+
+            var rm = new ResponseModel();
+            SeccionHelper Seccion = new SeccionHelper();
+
+            var data = db.PLU_Seccion.Where(x => x.IdSeccion == IdSeccion).FirstOrDefault();
+
+            var seccion = new PLU_Seccion
+            {
+                IdSeccion = data.IdSeccion,
+                NombreSeccion = data.NombreSeccion,
+                CodeBase = data.CodeBase,
+                Activo = data.Activo,
+                FechaCreacion = data.FechaCreacion
+
+            };
+
+            if (ModelState.IsValid)
+            {
+
+                rm = Seccion.Delete(seccion);
+                if (rm.response)
+                {
+                    rm.message = "Seccion Eliminada con exito.";
+                    rm.function = "CargarData();$('#close').trigger('click');";
+                    rm.error = false;
+                }
+                else
+                {
+                    rm.message = "Error al Eliminar Seccion.";
+                    rm.function = "CargarData();$('#close').trigger('click');";
+                    rm.error = true;
+                }
+            }
             return Json(rm);
         }
 

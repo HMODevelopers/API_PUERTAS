@@ -123,6 +123,33 @@ namespace Helpers
             return rm;
         }
 
+        public ResponseModel Delete(PLU_Residentes plu_residentes)
+        {
+            var rm = new ResponseModel();
+            try
+            {
+                using (var ctx = new ModelContent())
+                {
+
+                    ctx.Entry(plu_residentes).State = EntityState.Deleted;
+                    ctx.SaveChanges();
+                    rm.SetResponse(true);
+
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                throw e;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return rm;
+        }
+
         public static int GetSeccion(int IdResidente)
         {
             using (var ctx = new ModelContent())

@@ -111,5 +111,50 @@ namespace API_PUERTAS.Controllers
         }
 
 
+        [HttpPost]
+        public JsonResult DeleteResidentes(int IdResidente)
+        {
+
+            var rm = new ResponseModel();
+            ResidentesHelper Residentes = new ResidentesHelper();
+
+            var data = db.PLU_Residentes.Where(x => x.IdResidentes == IdResidente).FirstOrDefault();
+
+            var residente = new PLU_Residentes
+            {
+                IdResidentes = data.IdResidentes,
+                IdSeccion = data.IdSeccion,
+                NombreCompleto = data.NombreCompleto,
+                Celular = data.Celular,
+                Pass = data.Pass,
+                NoCasa = data.NoCasa,
+                Domicilio = data.Domicilio,
+                Auth = data.Auth,
+                Activo = data.Activo,
+                FechaCreacion = data.FechaCreacion
+
+            };
+
+            if (ModelState.IsValid)
+            {
+
+                rm = Residentes.Delete(residente);
+                if (rm.response)
+                {
+                    rm.message = "Residente Eliminado con exito.";
+                    rm.function = "CargarData();$('#close').trigger('click');";
+                    rm.error = false;
+                }
+                else
+                {
+                    rm.message = "Error al Eliminar Residente.";
+                    rm.function = "CargarData();$('#close').trigger('click');";
+                    rm.error = true;
+                }
+            }
+            return Json(rm);
+        }
+
+
     }
 }

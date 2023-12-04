@@ -102,5 +102,44 @@ namespace API_PUERTAS.Controllers
 
 
 
+        [HttpPost]
+        public JsonResult DeleteRol(int IdRol)
+        {
+
+            var rm = new ResponseModel();
+            RolesHelper Rol = new RolesHelper();
+
+            var data = db.PLU_Rol.Where(x => x.IdRol == IdRol).FirstOrDefault();
+
+            var rol = new PLU_Rol
+            {
+                IdRol = data.IdRol,
+                NombreRol = data.NombreRol,
+                Descripcion = data.Descripcion,
+                Activo = data.Activo,
+                FechaCreacion = data.FechaCreacion
+
+            };
+
+            if (ModelState.IsValid)
+            {
+
+                rm = Rol.Delete(rol);
+                if (rm.response)
+                {
+                    rm.message = "Rol Eliminado con exito.";
+                    rm.function = "CargarData();$('#close').trigger('click');";
+                    rm.error = false;
+                }
+                else
+                {
+                    rm.message = "Error al Eliminar Rol.";
+                    rm.function = "CargarData();$('#close').trigger('click');";
+                    rm.error = true;
+                }
+            }
+            return Json(rm);
+        }
+
     }
 }

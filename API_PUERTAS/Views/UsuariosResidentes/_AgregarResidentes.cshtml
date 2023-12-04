@@ -10,7 +10,7 @@
                 <button type="button" id="close" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
 
-            @using (Html.BeginForm("Guardar", "Residentes", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divMenu" }))
+            @using (Html.BeginForm("Guardar", "UsuariosResidentes", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divMenu" }))
             {
                 @Html.HiddenFor( x => x.Pass)
                 <div class="modal-body p-4">

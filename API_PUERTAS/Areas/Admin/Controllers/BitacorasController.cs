@@ -4,9 +4,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using static EDUES_ADMIN.Filters.AdminFilters;
 
 namespace API_PUERTAS.Areas.Admin.Controllers
 {
+
+    [Admin]
     public class BitacorasController : Controller
     {
         ModelContent db = new ModelContent();
