@@ -14,6 +14,7 @@ namespace Models
             PLU_Codigos = new HashSet<PLU_Codigos>();
             PLU_Puertas = new HashSet<PLU_Puertas>();
             PLU_Residentes = new HashSet<PLU_Residentes>();
+            PLU_Usuario = new HashSet<PLU_Usuario>();
         }
 
         [Key]
@@ -39,5 +40,8 @@ namespace Models
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PLU_Residentes> PLU_Residentes { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PLU_Usuario> PLU_Usuario { get; set; }
     }
 }

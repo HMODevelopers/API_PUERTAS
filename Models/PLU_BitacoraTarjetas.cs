@@ -6,14 +6,14 @@ namespace Models
     using System.ComponentModel.DataAnnotations.Schema;
     using System.Data.Entity.Spatial;
 
-    public partial class PLU_BitacoraCodigos
+    public partial class PLU_BitacoraTarjetas
     {
         [Key]
-        public int IdBitacoraCodigo { get; set; }
+        public int IdBitacoraTarjeta { get; set; }
+
+        public int IdTarjeta { get; set; }
 
         public int IdResidente { get; set; }
-
-        public int IdCodigo { get; set; }
 
         public DateTime FechaUso { get; set; }
 
@@ -21,6 +21,6 @@ namespace Models
 
         public DateTime FechaCreacion { get; set; }
 
-        public virtual PLU_Codigos PLU_Codigos { get; set; }
+        public virtual PLU_Tarjetas PLU_Tarjetas { get; set; }
     }
 }

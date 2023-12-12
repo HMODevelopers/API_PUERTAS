@@ -55,6 +55,7 @@
     <Compile Include="AdminHelper.cs" />
     <Compile Include="BitacoraAccessoHelper.cs" />
     <Compile Include="CodigosHelper.cs" />
+    <Compile Include="ControlesHelper.cs" />
     <Compile Include="HashHelper.cs" />
     <Compile Include="MenuHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -73,7 +74,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{ed3c2c6b-2f44-4e01-9271-5cbacc45fa69}</Project>
+      <Project>{9902bc63-3ad9-495c-9814-ac5e137e5583}</Project>
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>

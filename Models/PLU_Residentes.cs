@@ -12,8 +12,9 @@ namespace Models
         public PLU_Residentes()
         {
             PLU_BitacoraAccesos = new HashSet<PLU_BitacoraAccesos>();
-            PLU_BitacoraCodigos = new HashSet<PLU_BitacoraCodigos>();
             PLU_Codigos = new HashSet<PLU_Codigos>();
+            PLU_Controles = new HashSet<PLU_Controles>();
+            PLU_Tarjetas = new HashSet<PLU_Tarjetas>();
         }
 
         [Key]
@@ -48,11 +49,14 @@ namespace Models
         public virtual ICollection<PLU_BitacoraAccesos> PLU_BitacoraAccesos { get; set; }
 
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<PLU_BitacoraCodigos> PLU_BitacoraCodigos { get; set; }
-
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<PLU_Codigos> PLU_Codigos { get; set; }
 
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PLU_Controles> PLU_Controles { get; set; }
+
         public virtual PLU_Seccion PLU_Seccion { get; set; }
+
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<PLU_Tarjetas> PLU_Tarjetas { get; set; }
     }
 }

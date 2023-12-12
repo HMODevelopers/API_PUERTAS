@@ -173,8 +173,10 @@
     <Compile Include="Controllers\AperturaController.cs" />
     <Compile Include="Controllers\AuthController.cs" />
     <Compile Include="Controllers\CatalogosController.cs" />
+    <Compile Include="Controllers\ControlesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\TarjetasController.cs" />
     <Compile Include="Controllers\UsuariosResidentesController.cs" />
     <Compile Include="Controllers\RolesController.cs" />
     <Compile Include="Controllers\SeccionController.cs" />
@@ -557,6 +559,9 @@
     <Content Include="Views\UsuariosResidentes\Index.cshtml" />
     <Content Include="Views\UsuariosResidentes\_AgregarResidentes.cshtml" />
     <Content Include="Views\Home\BitacoraCode.cshtml" />
+    <Content Include="Views\Tarjetas\Index.cshtml" />
+    <Content Include="Views\Controles\Index.cshtml" />
+    <Content Include="Views\Controles\_AgregarControl.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -641,7 +646,7 @@
       <Name>Helpers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Models\Models.csproj">
-      <Project>{ed3c2c6b-2f44-4e01-9271-5cbacc45fa69}</Project>
+      <Project>{9902bc63-3ad9-495c-9814-ac5e137e5583}</Project>
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>

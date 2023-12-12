@@ -1,17 +1,17 @@
 ﻿using Models;
 using System;
 using System.Collections.Generic;
-using System.Data.Entity.Validation;
 using System.Data.Entity;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Helpers
 {
-    public class CodigosHelper
+    public class ControlesHelper
     {
-        public ResponseModel Agregar(PLU_Codigos plu_codigos)
+        public ResponseModel Agregar(PLU_Controles plu_controles)
         {
             var rm = new ResponseModel();
             try
@@ -19,7 +19,7 @@ namespace Helpers
                 using (var ctx = new ModelContent())
                 {
 
-                    ctx.Entry(plu_codigos).State = EntityState.Added;
+                    ctx.Entry(plu_controles).State = EntityState.Added;
                     ctx.SaveChanges();
                     rm.SetResponse(true);
 
@@ -39,7 +39,7 @@ namespace Helpers
         }
 
 
-        public ResponseModel CambiarStatus(PLU_Codigos plu_codigos)
+        public ResponseModel CambiarStatus(PLU_Controles plu_controles)
         {
             var rm = new ResponseModel();
             try
@@ -47,7 +47,7 @@ namespace Helpers
                 using (var ctx = new ModelContent())
                 {
 
-                    ctx.Entry(plu_codigos).State = EntityState.Modified;
+                    ctx.Entry(plu_controles).State = EntityState.Modified;
                     ctx.SaveChanges();
                     rm.SetResponse(true);
 
@@ -65,6 +65,5 @@ namespace Helpers
 
             return rm;
         }
-
     }
 }

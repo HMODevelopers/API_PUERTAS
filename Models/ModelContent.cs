@@ -14,7 +14,10 @@ namespace Models
 
         public virtual DbSet<PLU_BitacoraAccesos> PLU_BitacoraAccesos { get; set; }
         public virtual DbSet<PLU_BitacoraCodigos> PLU_BitacoraCodigos { get; set; }
+        public virtual DbSet<PLU_BitacoraControles> PLU_BitacoraControles { get; set; }
+        public virtual DbSet<PLU_BitacoraTarjetas> PLU_BitacoraTarjetas { get; set; }
         public virtual DbSet<PLU_Codigos> PLU_Codigos { get; set; }
+        public virtual DbSet<PLU_Controles> PLU_Controles { get; set; }
         public virtual DbSet<PLU_Menu> PLU_Menu { get; set; }
         public virtual DbSet<PLU_MenuRoles> PLU_MenuRoles { get; set; }
         public virtual DbSet<PLU_Puertas> PLU_Puertas { get; set; }
@@ -22,6 +25,7 @@ namespace Models
         public virtual DbSet<PLU_Rol> PLU_Rol { get; set; }
         public virtual DbSet<PLU_Seccion> PLU_Seccion { get; set; }
         public virtual DbSet<PLU_SubMenu> PLU_SubMenu { get; set; }
+        public virtual DbSet<PLU_Tarjetas> PLU_Tarjetas { get; set; }
         public virtual DbSet<PLU_TipoCodigo> PLU_TipoCodigo { get; set; }
         public virtual DbSet<PLU_Usuario> PLU_Usuario { get; set; }
 
@@ -30,6 +34,11 @@ namespace Models
             modelBuilder.Entity<PLU_Codigos>()
                 .HasMany(e => e.PLU_BitacoraCodigos)
                 .WithRequired(e => e.PLU_Codigos)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PLU_Controles>()
+                .HasMany(e => e.PLU_BitacoraControles)
+                .WithRequired(e => e.PLU_Controles)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PLU_Menu>()
@@ -85,13 +94,19 @@ namespace Models
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PLU_Residentes>()
-                .HasMany(e => e.PLU_BitacoraCodigos)
+                .HasMany(e => e.PLU_Codigos)
                 .WithRequired(e => e.PLU_Residentes)
                 .HasForeignKey(e => e.IdResidente)
                 .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PLU_Residentes>()
-                .HasMany(e => e.PLU_Codigos)
+                .HasMany(e => e.PLU_Controles)
+                .WithRequired(e => e.PLU_Residentes)
+                .HasForeignKey(e => e.IdResidente)
+                .WillCascadeOnDelete(false);
+
+            modelBuilder.Entity<PLU_Residentes>()
+                .HasMany(e => e.PLU_Tarjetas)
                 .WithRequired(e => e.PLU_Residentes)
                 .HasForeignKey(e => e.IdResidente)
                 .WillCascadeOnDelete(false);
@@ -116,6 +131,10 @@ namespace Models
 
             modelBuilder.Entity<PLU_Seccion>()
                 .Property(e => e.NombreSeccion)
+                .IsUnicode(false);
+
+            modelBuilder.Entity<PLU_Seccion>()
+                .Property(e => e.CodeBase)
                 .IsUnicode(false);
 
             modelBuilder.Entity<PLU_Seccion>()
@@ -144,6 +163,11 @@ namespace Models
             modelBuilder.Entity<PLU_SubMenu>()
                 .Property(e => e.Accion)
                 .IsUnicode(false);
+
+            modelBuilder.Entity<PLU_Tarjetas>()
+                .HasMany(e => e.PLU_BitacoraTarjetas)
+                .WithRequired(e => e.PLU_Tarjetas)
+                .WillCascadeOnDelete(false);
 
             modelBuilder.Entity<PLU_TipoCodigo>()
                 .Property(e => e.NombreTipoCodigo)

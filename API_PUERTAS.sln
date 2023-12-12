@@ -1,13 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 17
-VisualStudioVersion = 17.5.33516.290
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.33927.289
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API_PUERTAS", "API_PUERTAS\API_PUERTAS.csproj", "{739D4B0F-7992-4FCB-825C-4F46A2753304}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helpers", "Helpers\Helpers.csproj", "{369F9983-D293-4437-8071-6CD74CE36054}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{ED3C2C6B-2F44-4E01-9271-5CBACC45FA69}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{9902BC63-3AD9-495C-9814-AC5E137E5583}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -23,10 +23,10 @@ Global
 		{369F9983-D293-4437-8071-6CD74CE36054}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{369F9983-D293-4437-8071-6CD74CE36054}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{369F9983-D293-4437-8071-6CD74CE36054}.Release|Any CPU.Build.0 = Release|Any CPU
-		{ED3C2C6B-2F44-4E01-9271-5CBACC45FA69}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{ED3C2C6B-2F44-4E01-9271-5CBACC45FA69}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{ED3C2C6B-2F44-4E01-9271-5CBACC45FA69}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{ED3C2C6B-2F44-4E01-9271-5CBACC45FA69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9902BC63-3AD9-495C-9814-AC5E137E5583}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9902BC63-3AD9-495C-9814-AC5E137E5583}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9902BC63-3AD9-495C-9814-AC5E137E5583}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9902BC63-3AD9-495C-9814-AC5E137E5583}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
