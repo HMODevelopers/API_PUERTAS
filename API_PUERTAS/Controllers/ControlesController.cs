@@ -62,36 +62,56 @@ namespace API_PUERTAS.Controllers
         }
 
 
+
+
         [HttpPost]
         public JsonResult Guardar(PLU_Controles plu_controles)
         {
-
-            var rm = new ResponseModel();
-            ControlesHelper controles = new ControlesHelper();
-            plu_controles.Activo = true;
-            plu_controles.FechaCreacion = DateTime.Now;
-
-            if (ModelState.IsValid)
+            if (ExisteNumeroControl(plu_controles.NumerControl))
             {
+                
 
-                rm = controles.Agregar(plu_controles);
-                if (rm.response)
+                var rm = new ResponseModel();
+                rm.message = "Numero de control ya existe.";
+                rm.function = "CargarData(1);$('#close').trigger('click');";
+                rm.error = false;
+
+                return Json(rm, JsonRequestBehavior.AllowGet);
+
+            }
+            else
+            {
+                var rm = new ResponseModel();
+                ControlesHelper controles = new ControlesHelper();
+                plu_controles.Activo = true;
+                plu_controles.FechaCreacion = DateTime.Now;
+
+                if (ModelState.IsValid)
                 {
-                    rm.message = "Control agregado con exito.";
-                    rm.function = "CargarData(1);$('#close').trigger('click');";
-                    rm.error = false;
+
+                    rm = controles.Agregar(plu_controles);
+                    if (rm.response)
+                    {
+                        rm.message = "Control agregado con exito.";
+                        rm.function = "CargarData(1);$('#close').trigger('click');";
+                        rm.error = false;
+                    }
+                    else
+                    {
+                        rm.message = "Error al agregar control.";
+                        rm.function = "CargarData(1);$('#close').trigger('click');";
+                        rm.error = true;
+                    }
                 }
-                else
-                {
-                    rm.message = "Error al agregar control.";
-                    rm.function = "CargarData(1);$('#close').trigger('click');";
-                    rm.error = true;
-                }
+
+
+                return Json(rm, JsonRequestBehavior.AllowGet);
             }
 
-
-            return Json(rm, JsonRequestBehavior.AllowGet);
+           
         }
+
+
 
 
         [HttpPost]
@@ -147,6 +167,17 @@ namespace API_PUERTAS.Controllers
         }
 
 
+        public bool ExisteNumeroControl(int numero)
+        {
+            using (ModelContent db = new ModelContent())
+            {
+                
+                var existe = db.PLU_Controles.Any(c => c.NumerControl == numero);
+
+                
+                return existe;
+            }
+        }
 
     }
 
