@@ -199,6 +199,8 @@
 
                                          }).then((result) => {
 
+                                             CargarData(data.result);
+                                             $("#IdSeccion").val(data.result);
 
                                     });
 
@@ -213,7 +215,8 @@
 
                                       }).then((result) => {
 
-                                          
+                                          CargarData(data.result);
+                                          $("#IdSeccion").val(data.result);
 
                                       });
                                 }
@@ -228,7 +231,7 @@
 
                      Swal.fire({
                           title: "Cancelado",
-                          text: "Tu puerta está segura",
+                          text: "Tu Control está seguro",
                           type: "error"
                      });
                 }
@@ -244,12 +247,12 @@
             $(tbody).on("click", "button.eliminar", function () {
 
                 data = table.row($(this).parents("tr")).data();
-                var id = data.IdPuerta;
+                var IdControl = data.IdControl;
 
 
                 Swal.fire({
                     title: "Estas seguro?",
-                    text: "¡Eliminar la puerta: " + data.NombrePuerta + "!",
+                    text: "¡Eliminar el control: " + data.NumerControl + "!",
                     type:  "warning",
                     showCancelButton: !0,
                     confirmButtonText: "Aceptar",
@@ -264,9 +267,9 @@
                 if (t.value) {
 
                      $.ajax({
-                        url: '@Url.Action("DeletePuerta", "Puertas")',
+                        url: '@Url.Action("DeleteControl", "Controles")',
                         type: 'POST',
-                        data: { IdPuerta: id, },
+                        data: { IdControl: IdControl, },
                         success: function (data) {
 
 
@@ -281,7 +284,8 @@
 
                                          }).then((result) => {
 
-                                          CargarData();
+                                             CargarData(data.result);
+                                             $("#IdSeccion").val(data.result);
 
                                     });
 
@@ -296,7 +300,8 @@
 
                                       }).then((result) => {
 
-                                          CargarData();
+                                          CargarData(data.result);
+                                          $("#IdSeccion").val(data.result);
 
                                       });
                                 }
@@ -322,7 +327,7 @@
 
                      Swal.fire({
                           title: "Cancelado",
-                          text: "Tu residente está seguro",
+                          text: "Tu control está seguro",
                           type: "error"
                      });
                 }

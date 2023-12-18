@@ -41,7 +41,6 @@ namespace API_PUERTAS.Controllers
         }
 
 
-
         [HttpGet]
         public JsonResult GetResidentes(int IdSeccion)
         {
@@ -60,8 +59,6 @@ namespace API_PUERTAS.Controllers
             }
             
         }
-
-
 
 
         [HttpPost]
@@ -112,8 +109,6 @@ namespace API_PUERTAS.Controllers
         }
 
 
-
-
         [HttpPost]
         public JsonResult CambiarStatus(int id, bool activo)
         {
@@ -147,22 +142,67 @@ namespace API_PUERTAS.Controllers
                     FechaCreacion = data.FechaCreacion
                 };
             }
-
+            var IdSeccion = data.PLU_Residentes.IdSeccion;
             rm = controles.CambiarStatus(con);
 
             if (rm.response)
             {
-                rm.message = "Se a desactivado el control con exito.";
-                rm.function = "CargarData(1);$('#close').trigger('click');";
+                rm.message = "Se desactivado el control con exito.";
+                rm.function = "CargarData("+IdSeccion+");$('#close').trigger('click');";
+                rm.result = IdSeccion;
                 rm.error = false;
             }
             else
             {
                 rm.message = "Error al cambiar estatus";
-                rm.function = "CargarData(1);$('#close').trigger('click');";
+                rm.function = "CargarData("+IdSeccion+");$('#close').trigger('click');";
+                rm.result = IdSeccion;
                 rm.error = true;
             }
 
+            return Json(rm);
+        }
+
+
+        [HttpPost]
+        public JsonResult DeleteControl(int IdControl)
+        {
+
+            var rm = new ResponseModel();
+            ControlesHelper Control = new ControlesHelper();
+
+            var data = db.PLU_Controles.Where(x => x.IdControl == IdControl).FirstOrDefault();
+
+            var control = new PLU_Controles
+            {
+                IdControl = data.IdControl,
+                IdResidente = data.IdResidente,
+                NumerControl = data.NumerControl,
+                Activo = false,
+                FechaCreacion = data.FechaCreacion
+
+            };
+            var IdSeccion = data.PLU_Residentes.IdSeccion;
+
+            if (ModelState.IsValid)
+            {
+
+                rm = Control.Delete(control);
+                if (rm.response)
+                {
+                    rm.message = "Control Eliminado con exito.";
+                    rm.function = "CargarData();$('#close').trigger('click');";
+                    rm.result = IdSeccion;
+                    rm.error = false;
+                }
+                else
+                {
+                    rm.message = "Error al Eliminar Control.";
+                    rm.function = "CargarData();$('#close').trigger('click');";
+                    rm.result = IdSeccion;
+                    rm.error = true;
+                }
+            }
             return Json(rm);
         }
 

@@ -66,6 +66,7 @@
     <Compile Include="SeccionHelper.cs" />
     <Compile Include="SessionHelper.cs" />
     <Compile Include="SubMenuHelper.cs" />
+    <Compile Include="TarjetasHelper.cs" />
     <Compile Include="UsuarioHelper.cs" />
   </ItemGroup>
   <ItemGroup>

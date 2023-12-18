@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace Helpers
 {
-    public class ControlesHelper
+    public class TarjetasHelper
     {
-        public ResponseModel Agregar(PLU_Controles plu_controles)
+        public ResponseModel Agregar(PLU_Tarjetas plu_tarjetas)
         {
             var rm = new ResponseModel();
             try
@@ -19,7 +19,7 @@ namespace Helpers
                 using (var ctx = new ModelContent())
                 {
 
-                    ctx.Entry(plu_controles).State = EntityState.Added;
+                    ctx.Entry(plu_tarjetas).State = EntityState.Added;
                     ctx.SaveChanges();
                     rm.SetResponse(true);
 
@@ -39,7 +39,7 @@ namespace Helpers
         }
 
 
-        public ResponseModel CambiarStatus(PLU_Controles plu_controles)
+        public ResponseModel CambiarStatus(PLU_Tarjetas plu_tarjetas)
         {
             var rm = new ResponseModel();
             try
@@ -47,7 +47,7 @@ namespace Helpers
                 using (var ctx = new ModelContent())
                 {
 
-                    ctx.Entry(plu_controles).State = EntityState.Modified;
+                    ctx.Entry(plu_tarjetas).State = EntityState.Modified;
                     ctx.SaveChanges();
                     rm.SetResponse(true);
 
@@ -66,7 +66,7 @@ namespace Helpers
             return rm;
         }
 
-        public ResponseModel Delete(PLU_Controles plu_controles)
+        public ResponseModel Delete(PLU_Tarjetas plu_tarjetas)
         {
             var rm = new ResponseModel();
             try
@@ -74,7 +74,7 @@ namespace Helpers
                 using (var ctx = new ModelContent())
                 {
 
-                    ctx.Entry(plu_controles).State = EntityState.Deleted;
+                    ctx.Entry(plu_tarjetas).State = EntityState.Deleted;
                     ctx.SaveChanges();
                     rm.SetResponse(true);
 
@@ -92,8 +92,5 @@ namespace Helpers
 
             return rm;
         }
-
-
-
     }
 }

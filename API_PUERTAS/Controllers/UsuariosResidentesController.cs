@@ -17,7 +17,6 @@ namespace API_PUERTAS.Controllers
         public ActionResult Index()
         {
             PLU_Residentes plu_residentes = new PLU_Residentes();
-            plu_residentes.Pass = "96ef9fbd2bc8bedff9185ec427854ca67bfbec29";
 
             return View(plu_residentes);
         }
@@ -42,7 +41,7 @@ namespace API_PUERTAS.Controllers
 
             var rm = new ResponseModel();
             ResidentesHelper Residentes = new ResidentesHelper();
-            plu_residentes.Pass = HashHelper.SHA1("123456789$");
+            plu_residentes.Pass = HashHelper.SHA1(plu_residentes.Pass);
             plu_residentes.FechaCreacion = DateTime.Now;
 
             if (ModelState.IsValid)
@@ -155,6 +154,41 @@ namespace API_PUERTAS.Controllers
             return Json(rm);
         }
 
+        [HttpPost]
+        public JsonResult ResetPassword(int id)
+        {
+            var rm = new ResponseModel();
+            ResidentesHelper Residentes = new ResidentesHelper();
+            PLU_Residentes residentes = new PLU_Residentes();
 
+            var data = db.PLU_Residentes.Where(x => x.IdResidentes == id).FirstOrDefault();
+
+            residentes.IdResidentes = data.IdResidentes;
+            residentes.IdSeccion = data.IdSeccion;
+            residentes.NombreCompleto = data.NombreCompleto;
+            residentes.Celular = data.Celular;
+            residentes.Pass = HashHelper.SHA1("123456789$"); 
+            residentes.NoCasa = data.NoCasa;
+            residentes.Domicilio = data.Domicilio;
+            residentes.Auth = data.Auth;
+            residentes.Activo = data.Activo;
+            residentes.FechaCreacion = data.FechaCreacion;
+
+            
+            rm = Residentes.CambiarStatus(residentes);
+
+            if (rm.response)
+            {
+                rm.message = "La contraseña del residente ha sido cambiado.";
+                rm.error = false;
+            }
+            else
+            {
+                rm.message = "Error al restaurar contraseña";
+                rm.error = true;
+            }
+
+            return Json(rm);
+        }
     }
 }
