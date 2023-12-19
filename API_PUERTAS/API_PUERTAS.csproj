@@ -518,6 +518,8 @@
     <Content Include="Areas\Admin\Views\Bitacoras\BitacoraCode.cshtml" />
     <Content Include="Areas\Admin\Views\Resi\_AgregarResidentes.cshtml" />
     <Content Include="Areas\Admin\Views\Resi\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Bitacoras\BitacoraControles.cshtml" />
+    <Content Include="Areas\Admin\Views\Bitacoras\BitacoraTarjetas.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -562,6 +564,9 @@
     <Content Include="Views\Tarjetas\Index.cshtml" />
     <Content Include="Views\Controles\Index.cshtml" />
     <Content Include="Views\Controles\_AgregarControl.cshtml" />
+    <Content Include="Views\Tarjetas\_AgregarTarjeta.cshtml" />
+    <Content Include="Views\Home\BitacoraTarjetas.cshtml" />
+    <Content Include="Views\Home\BitacoraControles.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

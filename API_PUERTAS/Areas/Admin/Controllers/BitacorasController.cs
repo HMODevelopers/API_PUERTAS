@@ -29,6 +29,21 @@ namespace API_PUERTAS.Areas.Admin.Controllers
             return View(data);
         }
 
+        public ActionResult BitacoraControles()
+        {
+            var IdUsuario = Helpers.SessionHelper.GetUser();
+            var data = db.PLU_Usuario.Where(x => x.IdUsuario == IdUsuario).FirstOrDefault();
+            return View(data);
+        }
+
+        public ActionResult BitacoraTarjetas()
+        {
+            var IdUsuario = Helpers.SessionHelper.GetUser();
+            var data = db.PLU_Usuario.Where(x => x.IdUsuario == IdUsuario).FirstOrDefault();
+            return View(data);
+        }
+
+
         public JsonResult GetBitacoraApp(int IdSeccion)
         {
             var data = db.PLU_BitacoraAccesos.Where(x => x.PLU_Residentes.IdSeccion == IdSeccion).Select(x => new { x.IdBitacoraAccesos, x.PLU_Residentes.NombreCompleto, x.PLU_Residentes.Domicilio, x.PLU_Residentes.NoCasa, x.PLU_Residentes.Celular, x.FechaUso }).ToList();
@@ -40,6 +55,23 @@ namespace API_PUERTAS.Areas.Admin.Controllers
         public JsonResult GetBitacoraCode(int IdSeccion)
         {
             var data = db.PLU_BitacoraCodigos.Where(x => x.PLU_Codigos.PLU_Residentes.IdSeccion == IdSeccion).Select(x => new { x.IdBitacoraCodigo, x.PLU_Codigos.PLU_Residentes.NombreCompleto, x.PLU_Codigos.PLU_Residentes.Domicilio, x.PLU_Codigos.PLU_Residentes.NoCasa, x.PLU_Codigos.PLU_Residentes.Celular, x.FechaUso }).ToList();
+            var jsonResult = Json(new { data }, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
+        }
+
+
+        public JsonResult GetBitacoraControles(int IdSeccion)
+        {
+            var data = db.PLU_BitacoraControles.Where(x => x.PLU_Controles.PLU_Residentes.IdSeccion == IdSeccion).Select(x => new { x.IdBitacoraControl, x.PLU_Controles.PLU_Residentes.NombreCompleto, x.PLU_Controles.PLU_Residentes.Domicilio, x.PLU_Controles.PLU_Residentes.NoCasa, x.PLU_Controles.PLU_Residentes.Celular, x.FechaUso }).ToList();
+            var jsonResult = Json(new { data }, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
+        }
+
+        public JsonResult GetBitacoraTarjetas(int IdSeccion)
+        {
+            var data = db.PLU_BitacoraTarjetas.Where(x => x.PLU_Tarjetas.PLU_Residentes.IdSeccion == IdSeccion).Select(x => new { x.IdBitacoraTarjeta, x.PLU_Tarjetas.PLU_Residentes.NombreCompleto, x.PLU_Tarjetas.PLU_Residentes.Domicilio, x.PLU_Tarjetas.PLU_Residentes.NoCasa, x.PLU_Tarjetas.PLU_Residentes.Celular, x.FechaUso }).ToList();
             var jsonResult = Json(new { data }, JsonRequestBehavior.AllowGet);
             jsonResult.MaxJsonLength = int.MaxValue;
             return jsonResult;

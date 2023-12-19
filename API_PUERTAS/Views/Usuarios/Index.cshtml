@@ -50,10 +50,14 @@
                 console.log(selectedValue);
 
                 // Mostrar u ocultar el campo oculto basado en la selección
-                if (selectedValue == 1002) {
+                if (selectedValue != 1) {
                     $("#seccion").css("display", "block");
+                    $('#IdSeccion').val('');
+                    $('#IdSeccion').prop('required', true);
                 } else {
                     $("#seccion").css("display", "none");
+                    $('#IdSeccion').val('');
+                    $('#IdSeccion').prop('required', false);
                 }
             });
 

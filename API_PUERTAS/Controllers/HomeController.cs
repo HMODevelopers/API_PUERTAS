@@ -56,6 +56,24 @@ namespace API_PUERTAS.Controllers
         }
 
 
+public JsonResult GetBitacoraControles(int IdSeccion)
+        {
+            var data = db.PLU_BitacoraControles.Where(x => x.PLU_Controles.PLU_Residentes.IdSeccion == IdSeccion).Select(x => new { x.IdBitacoraControl, x.PLU_Controles.PLU_Residentes.NombreCompleto, x.PLU_Controles.PLU_Residentes.Domicilio, x.PLU_Controles.PLU_Residentes.NoCasa, x.PLU_Controles.PLU_Residentes.Celular, x.FechaUso }).ToList();
+            var jsonResult = Json(new { data }, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
+        }
+
+        public JsonResult GetBitacoraTarjetas(int IdSeccion)
+        {
+            var data = db.PLU_BitacoraTarjetas.Where(x => x.PLU_Tarjetas.PLU_Residentes.IdSeccion == IdSeccion).Select(x => new { x.IdBitacoraTarjeta, x.PLU_Tarjetas.PLU_Residentes.NombreCompleto, x.PLU_Tarjetas.PLU_Residentes.Domicilio, x.PLU_Tarjetas.PLU_Residentes.NoCasa, x.PLU_Tarjetas.PLU_Residentes.Celular, x.FechaUso }).ToList();
+            var jsonResult = Json(new { data }, JsonRequestBehavior.AllowGet);
+            jsonResult.MaxJsonLength = int.MaxValue;
+            return jsonResult;
+        }
+        
+
+
         [HttpGet]
         public JsonResult GetSecciones()
         {

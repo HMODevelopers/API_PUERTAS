@@ -30,7 +30,6 @@ namespace API_PUERTAS.Areas.Admin.Controllers
         {
             var IdUsuario = Helpers.SessionHelper.GetUser();
             var usuario = db.PLU_Usuario.Where(x => x.IdUsuario == IdUsuario).FirstOrDefault();
-
             var data = db.PLU_Residentes.Where(x => x.IdSeccion == usuario.IdSeccion).Select(x => new { x.IdResidentes, x.PLU_Seccion.NombreSeccion, x.NombreCompleto, x.Celular, x.Domicilio, x.NoCasa, x.Activo, x.FechaCreacion }).ToList();
 
             var jsonResult = Json(new { data }, JsonRequestBehavior.AllowGet);
@@ -119,6 +118,43 @@ namespace API_PUERTAS.Areas.Admin.Controllers
             var usuario = db.PLU_Usuario.Where(x => x.IdUsuario == IdUsuario).FirstOrDefault();
             var data = db.PLU_Seccion.Where(x => x.IdSeccion == usuario.IdSeccion).Select(x => new { Text = x.NombreSeccion, Value = x.IdSeccion }).ToList();
             return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult ResetPassword(int id)
+        {
+            var rm = new ResponseModel();
+            ResidentesHelper Residentes = new ResidentesHelper();
+            PLU_Residentes residentes = new PLU_Residentes();
+
+            var data = db.PLU_Residentes.Where(x => x.IdResidentes == id).FirstOrDefault();
+
+            residentes.IdResidentes = data.IdResidentes;
+            residentes.IdSeccion = data.IdSeccion;
+            residentes.NombreCompleto = data.NombreCompleto;
+            residentes.Celular = data.Celular;
+            residentes.Pass = HashHelper.SHA1("123456789$");
+            residentes.NoCasa = data.NoCasa;
+            residentes.Domicilio = data.Domicilio;
+            residentes.Auth = data.Auth;
+            residentes.Activo = data.Activo;
+            residentes.FechaCreacion = data.FechaCreacion;
+
+
+            rm = Residentes.CambiarStatus(residentes);
+
+            if (rm.response)
+            {
+                rm.message = "La contraseña del residente ha sido cambiado.";
+                rm.error = false;
+            }
+            else
+            {
+                rm.message = "Error al restaurar contraseña";
+                rm.error = true;
+            }
+
+            return Json(rm);
         }
     }
 }
