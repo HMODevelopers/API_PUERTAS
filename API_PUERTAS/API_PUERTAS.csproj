@@ -167,6 +167,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Areas\Residentes\Controllers\CodigosController.cs" />
+    <Compile Include="Areas\Residentes\Controllers\ContrasenaController.cs" />
     <Compile Include="Areas\Residentes\Controllers\LoginController.cs" />
     <Compile Include="Areas\Residentes\Controllers\PuertaController.cs" />
     <Compile Include="Areas\Residentes\ResidentesAreaRegistration.cs" />
@@ -520,6 +521,7 @@
     <Content Include="Areas\Admin\Views\Resi\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Bitacoras\BitacoraControles.cshtml" />
     <Content Include="Areas\Admin\Views\Bitacoras\BitacoraTarjetas.cshtml" />
+    <Content Include="Areas\Residentes\Views\Contrasena\Index.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -570,8 +572,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Data\" />
-    <Folder Include="Areas\Residentes\Data\" />
     <Folder Include="Views\Proyecto\" />
   </ItemGroup>
   <ItemGroup>

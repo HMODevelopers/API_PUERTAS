@@ -85,5 +85,49 @@ namespace API_PUERTAS.Areas.Residentes.Controllers
             }
             return Json(rm);
         }
+
+
+        [HttpPost]
+        public JsonResult DeleteCodigo(int IdCodigo)
+        {
+
+            var rm = new ResponseModel();
+            CodigosHelper Codigos = new CodigosHelper();
+
+            var data = db.PLU_Codigos.Where(x => x.IdCodigo == IdCodigo).FirstOrDefault();
+
+            var codigo = new PLU_Codigos
+            {
+                IdCodigo = data.IdCodigo,
+                IdResidente = data.IdResidente,
+                IdSeccion = data.IdSeccion,
+                IdTipoCodigo = data.IdTipoCodigo,
+                Codigo = data.Codigo,
+                FechaAlta = data.FechaAlta,
+                FechaBaja = data.FechaBaja,
+                Activo = data.Activo,
+                FechaCreacion = data.FechaCreacion
+
+            };
+
+            if (ModelState.IsValid)
+            {
+
+                rm = Codigos.Delete(codigo);
+                if (rm.response)
+                {
+                    rm.message = "Codigo eliminado con exito.";
+                    rm.function = "CargarData();$('#close').trigger('click');";
+                    rm.error = false;
+                }
+                else
+                {
+                    rm.message = "Error al Eliminar Codigo.";
+                    rm.function = "CargarData();$('#close').trigger('click');";
+                    rm.error = true;
+                }
+            }
+            return Json(rm);
+        }
     }
 }

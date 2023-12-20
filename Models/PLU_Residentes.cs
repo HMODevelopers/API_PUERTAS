@@ -31,6 +31,7 @@ namespace Models
         public string Celular { get; set; }
 
         [Required]
+        [DataType(DataType.Password)]
         public string Pass { get; set; }
 
         [Required]

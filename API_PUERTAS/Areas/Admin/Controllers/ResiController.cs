@@ -17,10 +17,8 @@ namespace API_PUERTAS.Areas.Admin.Controllers
 
         public ActionResult Index()
         {
-            PLU_Residentes plu_residentes = new PLU_Residentes();
-            plu_residentes.Pass = "96ef9fbd2bc8bedff9185ec427854ca67bfbec29";
-
-            return View(plu_residentes);
+            
+            return View();
         }
 
 
@@ -44,7 +42,7 @@ namespace API_PUERTAS.Areas.Admin.Controllers
 
             var rm = new ResponseModel();
             ResidentesHelper Residentes = new ResidentesHelper();
-            plu_residentes.Pass = HashHelper.SHA1("123456789$");
+            plu_residentes.Pass = HashHelper.SHA1(plu_residentes.Pass);
             plu_residentes.FechaCreacion = DateTime.Now;
 
             if (ModelState.IsValid)
@@ -118,6 +116,50 @@ namespace API_PUERTAS.Areas.Admin.Controllers
             var usuario = db.PLU_Usuario.Where(x => x.IdUsuario == IdUsuario).FirstOrDefault();
             var data = db.PLU_Seccion.Where(x => x.IdSeccion == usuario.IdSeccion).Select(x => new { Text = x.NombreSeccion, Value = x.IdSeccion }).ToList();
             return Json(data, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult DeleteResidentes(int IdResidente)
+        {
+
+            var rm = new ResponseModel();
+            ResidentesHelper Residentes = new ResidentesHelper();
+
+            var data = db.PLU_Residentes.Where(x => x.IdResidentes == IdResidente).FirstOrDefault();
+
+            var residente = new PLU_Residentes
+            {
+                IdResidentes = data.IdResidentes,
+                IdSeccion = data.IdSeccion,
+                NombreCompleto = data.NombreCompleto,
+                Celular = data.Celular,
+                Pass = data.Pass,
+                NoCasa = data.NoCasa,
+                Domicilio = data.Domicilio,
+                Auth = data.Auth,
+                Activo = data.Activo,
+                FechaCreacion = data.FechaCreacion
+
+            };
+
+            if (ModelState.IsValid)
+            {
+
+                rm = Residentes.Delete(residente);
+                if (rm.response)
+                {
+                    rm.message = "Residente Eliminado con exito.";
+                    rm.function = "CargarData();$('#close').trigger('click');";
+                    rm.error = false;
+                }
+                else
+                {
+                    rm.message = "Error al Eliminar Residente.";
+                    rm.function = "CargarData();$('#close').trigger('click');";
+                    rm.error = true;
+                }
+            }
+            return Json(rm);
         }
 
         [HttpPost]

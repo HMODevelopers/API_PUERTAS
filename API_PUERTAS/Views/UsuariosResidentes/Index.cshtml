@@ -2,7 +2,26 @@
 @{
     ViewBag.Title = "RESIDENTES";
 }
+<style>
+    .eye-toggle {
+        cursor: pointer;
+        user-select: none;
+    }
 
+        .eye-toggle:hover {
+            text-decoration: underline;
+        }
+
+    #passwordInput[type="text"] {
+        -webkit-text-security: none;
+        text-security: none;
+    }
+
+    #passwordInput[type="password"] {
+        -webkit-text-security: disc;
+        text-security: disc;
+    }
+</style>
 
 <div class="row">
     <div class="col-12">
@@ -48,6 +67,16 @@
             CargarData();
             getSecciones();
 
+            var eyeIcon = $('#eyeIcon');
+            var passwordInput = $('#Pass');
+
+            eyeIcon.click(function () {
+                if (passwordInput.attr('type') === 'password') {
+                    passwordInput.attr('type', 'text');
+                } else {
+                    passwordInput.attr('type', 'password');
+                }
+            });
         });
 
         function getSecciones() {

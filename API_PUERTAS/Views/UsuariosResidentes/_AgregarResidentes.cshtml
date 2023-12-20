@@ -46,6 +46,7 @@
                                 <label for="field-1" class="control-label">Contraseña</label>
                                 @Html.EditorFor(x => x.Pass, new { htmlAttributes = new { @class = "form-control", placeholder = "" } })
                                 @Html.ValidationMessageFor(x => x.Pass, null, new { @class = "badge badge-danger" })
+                                <span class="eye-toggle" id="eyeIcon">👁️</span>
                             </div>
                         </div>
                     </div>
