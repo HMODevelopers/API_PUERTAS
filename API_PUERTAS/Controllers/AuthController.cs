@@ -21,7 +21,7 @@ namespace API_PUERTAS.Controllers
 
         public JsonResult Acceder(string username, string password_text)
         {
-            var rm = Usuario.Acceder(username, password_text);
+            var rm = Usuario.AccederAdmin(username, password_text);
 
             if (rm.response)
             {

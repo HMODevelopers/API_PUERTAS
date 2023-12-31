@@ -6,6 +6,7 @@
     .eye-toggle {
         cursor: pointer;
         user-select: none;
+        color: blue;
     }
 
         .eye-toggle:hover {
@@ -73,8 +74,10 @@
             eyeIcon.click(function () {
                 if (passwordInput.attr('type') === 'password') {
                     passwordInput.attr('type', 'text');
+                    eyeIcon.text("Ocultar");
                 } else {
                     passwordInput.attr('type', 'password');
+                    eyeIcon.text("Mostrar");
                 }
             });
         });

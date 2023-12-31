@@ -12,7 +12,7 @@ namespace Helpers
     public class UsuarioHelper
     {
 
-        public ResponseModel Acceder(string user, string pass)
+        public ResponseModel AccederAdmin(string user, string pass)
         {
 
             var rm = new ResponseModel();
@@ -28,7 +28,7 @@ namespace Helpers
 
                     if (usuario != null)
                     {
-                        SessionHelper.AddUserToSession(usuario.IdUsuario.ToString());
+                        SessionHelper.AddUserToSessionAdmin(usuario.IdUsuario.ToString());
                         rm.SetResponse(true);
                     }
                     else
@@ -37,16 +37,17 @@ namespace Helpers
                     }
                 }
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-                throw;
+                throw e;
             }
 
             return rm;
         }
+     
 
-    
+
 
         public PLU_Usuario Obtener(int id)
         {

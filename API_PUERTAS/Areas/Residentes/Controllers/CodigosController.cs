@@ -24,11 +24,36 @@ namespace API_PUERTAS.Areas.Residentes.Controllers
         public JsonResult GetCodigos(int IdResidente)
         {
 
-            var data = db.PLU_Codigos.Where(x => x.IdResidente == IdResidente).Select(x => new { x.IdCodigo,x.Codigo,x.PLU_TipoCodigo.NombreTipoCodigo,x.FechaAlta,x.FechaBaja,x.Activo,x.FechaCreacion }).ToList();
+            if (CambiarEstadoCodigosVencidos(IdResidente))
+            {
+             
+                // La función se ejecutó correctamente, puedes realizar más acciones si es necesario
+                var data = db.PLU_Codigos
+               .Where(x => x.IdResidente == IdResidente && x.Activo == true)
+               .Select(x => new
+               {
+                   x.IdCodigo,
+                   x.Codigo,
+                   TipoCodigo = x.PLU_TipoCodigo.NombreTipoCodigo,
+                   x.FechaAlta,
+                   x.FechaBaja,
+                   x.Activo,
+                   x.FechaCreacion
+               })
+               .ToList();
 
-            var jsonResult = Json(new { data }, JsonRequestBehavior.AllowGet);
-            jsonResult.MaxJsonLength = int.MaxValue;
-            return jsonResult;
+                var jsonResult = Json(new { data }, JsonRequestBehavior.AllowGet);
+                jsonResult.MaxJsonLength = int.MaxValue;
+                return jsonResult;
+            }
+            else
+            {
+                // La función falló, maneja la situación según tus necesidades
+                return null;
+            }
+
+
+
         }
 
         public JsonResult GetTipoCodigo()
@@ -129,5 +154,36 @@ namespace API_PUERTAS.Areas.Residentes.Controllers
             }
             return Json(rm);
         }
+
+
+        public bool CambiarEstadoCodigosVencidos(int idResidente)
+        {
+            try
+            {
+                DateTime fechaActual = DateTime.Now;
+
+                // Obtener los registros que cumplen con la condición
+                var codigosAEliminar = db.PLU_Codigos
+                    .Where(x => x.IdResidente == idResidente && x.Activo == true && x.FechaBaja != null && x.FechaBaja <= fechaActual && x.IdTipoCodigo == 3)
+                    .ToList();
+
+                // Cambiar el estado de los registros
+                foreach (var codigo in codigosAEliminar)
+                {
+                    codigo.Activo = false;
+                }
+
+                // Guardar los cambios en la base de datos
+                db.SaveChanges();
+
+                return true;
+            }
+            catch (Exception ex)
+            {
+                // Manejar cualquier excepción aquí, puedes registrarla, lanzarla de nuevo, etc.
+                return false;
+            }
+        }
+
     }
 }

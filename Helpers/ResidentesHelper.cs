@@ -30,7 +30,7 @@ namespace Helpers
 
                     if (usuario != null)
                     {
-                        SessionHelper.AddUserToSession(usuario.IdResidentes.ToString());
+                        SessionHelper.AddUserToSessionResidente(usuario.IdResidentes.ToString());
                         rm.SetResponse(true);
                     }
                     else
@@ -47,7 +47,6 @@ namespace Helpers
 
             return rm;
         }
-
 
         public PLU_Residentes Obtener(int id)
         {
@@ -67,7 +66,6 @@ namespace Helpers
 
             return residente;
         }
-
 
         public ResponseModel Agregar(PLU_Residentes plu_residentes)
         {
@@ -97,6 +95,34 @@ namespace Helpers
         }
 
         public ResponseModel CambiarStatus(PLU_Residentes plu_residentes)
+        {
+            var rm = new ResponseModel();
+            try
+            {
+                using (var ctx = new ModelContent())
+                {
+
+                    ctx.Entry(plu_residentes).State = EntityState.Modified;
+                    ctx.SaveChanges();
+                    rm.SetResponse(true);
+
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                throw e;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return rm;
+        }
+
+
+        public ResponseModel CambiarPass(PLU_Residentes plu_residentes)
         {
             var rm = new ResponseModel();
             try

@@ -26,7 +26,7 @@ namespace Helpers
 
                     if (usuario != null)
                     {
-                        SessionHelper.AddUserToSession(usuario.IdUsuario.ToString());
+                        SessionHelper.AddUserToSessionSeccion(usuario.IdUsuario.ToString());
                         rm.SetResponse(true);
                     }
                     else

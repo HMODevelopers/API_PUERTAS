@@ -2,51 +2,102 @@
 @{
     ViewBag.Title = "Cambiar Contraseña";
 }
+<style>
+    .error {
+        color: red;
+    }
+</style>
 
 <div class="row">
     <div class="col-lg-6">
         <div class="card">
             <div class="card-body">
 
-                <h4 class="mb-3 header-title">Horizontal form</h4>
+                <h4 class="mb-3 header-title"></h4>
 
 
-                <form class="form-horizontal">
+                @using (Html.BeginForm("CambiarContrasena", "Contrasena", new AjaxOptions { HttpMethod = "POST", UpdateTargetId = "divMenu" }))
+                {
                     <div class="form-group row mb-3">
-                        <label for="inputEmail3" class="col-3 col-form-label">Email</label>
+                        <label for="" class="col-3 col-form-label">Contraseña</label>
                         <div class="col-9">
-                            <input type="email" class="form-control" id="inputEmail3" placeholder="Email">
-                        </div>
-                    </div>
-                    <div class="form-group row mb-3">
-                        <label for="inputPassword3" class="col-3 col-form-label">Password</label>
-                        <div class="col-9">
-                            <input type="password" class="form-control" id="inputPassword3" placeholder="Password">
+                            <input type="password" class="form-control" name="Pass" id="pass1" placeholder="Contraseña">
                         </div>
                     </div>
                     <div class="form-group row mb-3">
-                        <label for="inputPassword5" class="col-3 col-form-label">Re Password</label>
+                        <label for="" class="col-3 col-form-label">Confirma Contraseña</label>
                         <div class="col-9">
-                            <input type="password" class="form-control" id="inputPassword5" placeholder="Retype Password">
+                            <input type="password" class="form-control" name="Pass2" id="pass2" placeholder="Repite Contraseña">
+                            <span id="error" class="error"></span>
                         </div>
                     </div>
-                    <div class="form-group row mb-3 justify-content-end">
-                        <div class="col-9">
-                            <div class="custom-control custom-checkbox">
-                                <input type="checkbox" class="custom-control-input" id="checkmeout">
-                                <label class="custom-control-label" for="checkmeout">Check me out !</label>
-                            </div>
-                        </div>
-                    </div>
+                    <div class="form-group row mb-3 justify-content-end"></div>
                     <div class="form-group mb-0 justify-content-end row">
                         <div class="col-9">
-                            <button type="submit" class="btn btn-info waves-effect waves-light">Sign in</button>
+                            <button data-ajax="true" data-reset="true" type="submit" class="btn btn-info waves-effect waves-light" id="guardar" disabled>Guardar</button>
                         </div>
                     </div>
-                </form>
+                }
 
             </div>  <!-- end card-body -->
         </div>  <!-- end card -->
     </div>  <!-- end col -->
-
 </div>
+@section Scripts{
+
+    <script>
+        $(document).ready(function () {
+
+            $('#pass2').on('input', function () {
+                // Obtener los valores de los campos de contraseña
+                var password = $('#pass1').val();
+                var confirmPassword = $('#pass2').val();
+
+                // Verificar si las contraseñas coinciden
+                if (password === confirmPassword) {
+                    // Las contraseñas coinciden, limpia el mensaje de error
+                    $('#error').text('');
+                    $('#guardar').prop('disabled', false);
+                } else {
+                    // Las contraseñas no coinciden, muestra un mensaje de error
+                    $('#error').text('Las contraseñas no coinciden');
+                    $('#guardar').prop('disabled', true);
+                }
+            });
+        });
+
+
+        function logout()
+        {
+            $.ajax({
+                url: '@Url.Action("Logout", "Login")', // Reemplaza 'ControllerName' con el nombre de tu controlador
+                type: 'GET',
+                success: function (data) {
+                    console.log('tdbn:', data);
+
+                    
+
+                        Swal.fire({
+                            title: "Buen Trabajo!",
+                            text: "Contraseña actualizada con éxito.",
+                            type: "success",
+                            confirmButtonClass: "Cerrar",
+                            showConfirmButton: true,
+
+                        }).then((result) => {
+
+                            window.location.href = "/Residentes/Login";
+
+                        });
+                    
+                },
+                error: function (error) {
+                    // Manejar errores si es necesario
+                    console.error('Error en la solicitud AJAX:', error);
+                }
+            });
+        
+        }
+    </script>
+
+}

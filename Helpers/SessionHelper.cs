@@ -67,13 +67,43 @@ namespace Helpers
 
 
 
-        public static void AddUserToSession(string id)
+        public static void AddUserToSessionAdmin(string id)
         {
             bool persist = true;
-            var cookie = FormsAuthentication.GetAuthCookie("usuario", persist);
+            var cookie = FormsAuthentication.GetAuthCookie("Admin", persist);
 
             cookie.Name = FormsAuthentication.FormsCookieName;
             cookie.Expires = DateTime.Now.AddMonths(3);
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            var newTicket = new FormsAuthenticationTicket(ticket.Version, ticket.Name, ticket.IssueDate, ticket.Expiration, ticket.IsPersistent, id);
+
+            cookie.Value = FormsAuthentication.Encrypt(newTicket);
+            HttpContext.Current.Response.Cookies.Add(cookie);
+        }
+
+        public static void AddUserToSessionSeccion(string id)
+        {
+            bool persist = true;
+            var cookie = FormsAuthentication.GetAuthCookie("AdminSeccion", persist);
+
+            cookie.Name = FormsAuthentication.FormsCookieName;
+            cookie.Expires = DateTime.Now.AddMonths(3);
+
+            var ticket = FormsAuthentication.Decrypt(cookie.Value);
+            var newTicket = new FormsAuthenticationTicket(ticket.Version, ticket.Name, ticket.IssueDate, ticket.Expiration, ticket.IsPersistent, id);
+
+            cookie.Value = FormsAuthentication.Encrypt(newTicket);
+            HttpContext.Current.Response.Cookies.Add(cookie);
+        }
+
+        public static void AddUserToSessionResidente(string id)
+        {
+            bool persist = true;
+            var cookie = FormsAuthentication.GetAuthCookie("Residente", persist);
+
+            cookie.Name = FormsAuthentication.FormsCookieName;
+            cookie.Expires = DateTime.Now.AddMonths(1000);
 
             var ticket = FormsAuthentication.Decrypt(cookie.Value);
             var newTicket = new FormsAuthenticationTicket(ticket.Version, ticket.Name, ticket.IssueDate, ticket.Expiration, ticket.IsPersistent, id);
