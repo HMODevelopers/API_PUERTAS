@@ -64,5 +64,60 @@ namespace Helpers
 
             return rm;
         }
+
+
+        public ResponseModel AgregarAccesoControl(PLU_BitacoraControles plu_controles)
+        {
+            var rm = new ResponseModel();
+            try
+            {
+                using (var ctx = new ModelContent())
+                {
+
+                    ctx.Entry(plu_controles).State = EntityState.Added;
+                    ctx.SaveChanges();
+                    rm.SetResponse(true);
+
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                throw e;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return rm;
+        }
+
+        public ResponseModel AgregarAccesoTarjeta(PLU_BitacoraTarjetas plu_tarjetas)
+        {
+            var rm = new ResponseModel();
+            try
+            {
+                using (var ctx = new ModelContent())
+                {
+
+                    ctx.Entry(plu_tarjetas).State = EntityState.Added;
+                    ctx.SaveChanges();
+                    rm.SetResponse(true);
+
+                }
+            }
+            catch (DbEntityValidationException e)
+            {
+                throw e;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return rm;
+        }
     }
 }

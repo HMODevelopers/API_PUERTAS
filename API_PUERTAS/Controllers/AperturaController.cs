@@ -147,6 +147,122 @@ namespace API_PUERTAS.Controllers
         }
 
 
+        [HttpGet]
+        [Route("Controles/{NumeroControl}")]
+        public IHttpActionResult GetControles([FromUri] int NumeroControl)
+        {
+
+            var data = ctx.PLU_Controles.Where(x => x.NumerControl == NumeroControl).Select(x => new { x.IdControl,x.IdResidente, x.NumerControl, x.Activo, x.FechaCreacion }).FirstOrDefault();
+            var bitacoraaccesoHelper = new BitacoraAccessoHelper();
+
+
+            if (data == null)
+            {
+                var respuesta = new
+                {
+                    respuesta = "CODE0000000000000"
+                };
+
+                return Ok(respuesta);
+            }
+            else
+            {
+                var accescodigo1 = new PLU_BitacoraControles
+                {
+                    IdControl = data.IdControl,
+                    IdResidente = data.IdResidente,
+                    FechaUso = DateTime.Now,
+                    Activo = true,
+                    FechaCreacion = DateTime.Now
+                };
+
+                    // Verificar si está activo
+                bool estaActivo = ObtenerEstadoActivoControl(NumeroControl);
+
+                if (estaActivo)
+                {
+    
+                        bitacoraaccesoHelper.AgregarAccesoControl(accescodigo1);
+
+                        var respuesta = new
+                        {
+                            respuesta = "CODE1000000000000"
+                        };
+
+                        return Ok(respuesta);
+                 }
+                 else
+                 {
+                        var respuesta = new
+                        {
+                            respuesta = "CODE0000000000000"
+                        };
+
+                        return Ok(respuesta);
+                 }
+            }
+        }
+
+        [HttpGet]
+        [Route("Tarjetas/{NumeroTarjeta}")]
+        public IHttpActionResult GetTarjetas([FromUri] int NumeroTarjeta)
+        {
+
+            var data = ctx.PLU_Tarjetas.Where(x => x.NumeroTarjeta == NumeroTarjeta).Select(x => new { x.IdTarjeta, x.IdResidente, x.NumeroTarjeta, x.Activo, x.FechaCreacion }).FirstOrDefault();
+            var bitacoraaccesoHelper = new BitacoraAccessoHelper();
+
+
+            if (data == null)
+            {
+                var respuesta = new
+                {
+                    respuesta = "CODE0000000000000"
+                };
+
+                return Ok(respuesta);
+            }
+            else
+            {
+                var accescodigo1 = new PLU_BitacoraTarjetas
+                {
+                    IdTarjeta = data.IdTarjeta,
+                    IdResidente = data.IdResidente,
+                    FechaUso = DateTime.Now,
+                    Activo = true,
+                    FechaCreacion = DateTime.Now
+                };
+
+                // Verificar si está activo
+                bool estaActivo = ObtenerEstadoActivoTarjeta(NumeroTarjeta);
+
+                if (estaActivo)
+                {
+
+                    bitacoraaccesoHelper.AgregarAccesoTarjeta(accescodigo1);
+
+                    var respuesta = new
+                    {
+                        respuesta = "CODE1000000000000"
+                    };
+
+                    return Ok(respuesta);
+                }
+                else
+                {
+                    var respuesta = new
+                    {
+                        respuesta = "CODE0000000000000"
+                    };
+
+                    return Ok(respuesta);
+                }
+            }
+        }
+
+
+
+
+
         private bool ObtenerEstadoActivo(int codigo)
         {
             var data = ctx.PLU_Codigos.Where(x => x.Codigo == codigo).Select(x => new { x.Activo }).FirstOrDefault();
@@ -160,8 +276,43 @@ namespace API_PUERTAS.Controllers
                 return false;
             }
 
-            
+
         }
+
+
+
+        private bool ObtenerEstadoActivoControl(int NumeroControl)
+        {
+            var data = ctx.PLU_Controles.Where(x => x.NumerControl == NumeroControl).Select(x => new { x.Activo }).FirstOrDefault();
+
+            if (data.Activo)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
+
+        private bool ObtenerEstadoActivoTarjeta(int NumeroTarjeta)
+        {
+            var data = ctx.PLU_Tarjetas.Where(x => x.NumeroTarjeta == NumeroTarjeta).Select(x => new { x.Activo }).FirstOrDefault();
+
+            if (data.Activo)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+
+        }
+
 
         private bool VerificarFechaBaja(int codigo)
         {
