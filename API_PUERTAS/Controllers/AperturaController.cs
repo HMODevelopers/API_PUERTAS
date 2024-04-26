@@ -1,10 +1,7 @@
 ﻿using Helpers;
 using Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace API_PUERTAS.Controllers
@@ -34,7 +31,6 @@ namespace API_PUERTAS.Controllers
 
             return Ok(respuesta);
         }
-
 
         [HttpGet]
         [Route("Codigos/{Codigo}")]
@@ -258,9 +254,6 @@ namespace API_PUERTAS.Controllers
                 }
             }
         }
-
-
-
 
 
         private bool ObtenerEstadoActivo(int codigo)

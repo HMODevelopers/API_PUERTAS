@@ -187,6 +187,12 @@ namespace Helpers
            
         }
 
+        public static PLU_Residentes GetByCelular(string Celular)
+        {
+            var ctx = new ModelContent();
+            var vModel = ctx.PLU_Residentes.Where(r => r.Celular == Celular).FirstOrDefault();
+            return vModel;
+        }
 
     }
 }
